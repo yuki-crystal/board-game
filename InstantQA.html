@@ -201,7 +201,7 @@
 
         }
 
-        #options {
+        #classificationFilter {
             font-size: 16px;
             text-align: center;
             margin-left: 60px;
@@ -582,10 +582,10 @@
             <thead>
                 <div id="classify">
                     <span id="tbTitle">即時問答</span>
-                    <select name="classify" id="options">
-                        <option value="0" selected="true">請選擇分類</option>
-                        <option value="0">購買</option>
-                        <option value="0">租賃</option>
+                    <select name="classify" id="classificationFilter" onchange="getLiveQuestions();">
+                        <option value="" selected="true">請選擇分類</option>
+                        <option value="購買">購買</option>
+                        <option value="租賃">租賃</option>
                     </select>
                     <span id="add"><button>&ensp;新增&ensp;</button></span>
                 </div>
@@ -726,7 +726,15 @@
         }
         function getLiveQuestions() {
             const axios = window.axios;
-            axios.get('http://localhost/api/live_questions.php')
+            let requestParameters = {
+                params: {
+                }
+            }
+            const classificationFilterValue = document.getElementById("classificationFilter").value
+            if (classificationFilterValue !== "") {
+                requestParameters.params.classification = classificationFilterValue
+            }
+            axios.get('http://localhost/api/live_questions.php', requestParameters)
                 .then(function (response) {
                     // handle success
                     console.log(response);
