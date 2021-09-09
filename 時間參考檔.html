@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #title {
+            font-size: 22px;
+            margin-bottom:5px;   
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            margin-left:20px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            height: 25px;
+        }
+
+        .td1 {
+            width: 50px;
+
+        }
+
+        .td2 {
+            width: 50px;
+
+        }
+
+        .td3 {
+            width: 120px;
+
+        }
+
+        .td4 {
+            width: 270px;
+
+        }
+
+        .td4Div {
+            width: 300px;
+            height: 70px;
+            display: block;
+            overflow-y: auto;
+
+        }
+
+        .td5 {
+            width: 300px;
+
+        }
+
+        .td5Div {
+            width: 300px;
+            height: 70px;
+            display: block;
+            overflow-y: auto;
+        }
+
+        .td6 {
+            width: 50px;
+
+        }
+
+        .td7 {
+            font-size: 16px;
+
+        }
+
+        #tbTitle {
+            font-size: 30px;
+
+        }
+
+        #content {
+            width: 290px;
+            height: 60px;
+        }
+    </style>
+    <script>
+        function delA() {
+            var tr = this.parentNode.parentNode;
+            var QA = tr.children[0].innerHTML;
+            var flag = confirm("確認刪除" + name + "嗎?");
+            if (flag) {
+                tr.parentNode.removeChild(tr);
+            } return false;
+        }
+        window.onload = function () {
+            var allA = document.getElementsByTagName("a");
+            //為每個超連接都綁定一個單擊響應函數
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].onclick = delA
+            }
+            var addEmpButton = document.getElementById("addEmpButton");
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <table id="forDiv">
+            <caption id="title"><b>新增問題和回覆<b></caption>
+            <tbody>
+                <tr>
+                    <td class="td1">分類</td>
+                    <td class="td2">時間</td>
+                    <td class="td3">問題</td>
+                    <td class="td4">詳細內容</td>
+                    <td class="td2">時間</td>
+                    <td class="td5">答覆</td>
+                    <td class="td6">送出</td>
+                </tr>
+                    <td class="td1">
+                        <select>
+                            <option value="0" selected="true" id="classify">請選擇分類</option>
+                            <option value="0">購買</option>
+                            <option value="0">租賃</option>
+                        </select>
+                    </td>
+                    <td class="td7">
+                        <input type="date" name="date" id="date">
+                        <input type="time" name="time" id="time">
+                    </td>
+                    <td class="td3"> 
+                        <textarea  id="q_title" name="q_title"  rows="5" cols="14" placeholder="請輸入問題標題"></textarea>
+                    </td>
+                    <td>
+                        <div class="td4Div">
+                            <textarea id="content" name="content" rows="5" cols="30" placeholder="請輸入問題內容"></textarea>
+                        </div>
+                    </td>
+                    <td class="td7">
+                        <input type="date" name="date" id="date">
+                        <input type="time" name="time" id="time">
+                    </td>
+                    <td>
+                        <div class="td5Div"> 
+                            <textarea id="content" name="content" rows="5" cols="30" placeholder="請輸入問題內容"></textarea>
+                        </div>
+                    </td>
+                    <td><button>新增</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>  
+</body>
+
+</html>

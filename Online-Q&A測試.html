@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer {
+            margin-left: 30px;
+        }
+
+        #backstage {
+            width: 270px;
+            height: 50px;
+            border: 1px solid black;
+            font-size: 30px;
+            letter-spacing: 2px;
+            text-align: center;
+            display: inline-block;
+            padding-top: 4px;
+        }
+
+        #user {
+            float: right;
+            margin-right: 80px;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        #userName {
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            top: -10px;
+        }
+
+        #avatar {
+            margin-top: 5px;
+            margin-left: 15px;
+            height: 40px;
+        }
+
+        #avatarOuter {
+            margin-top: 15px;
+            border-radius: 50px;
+            background-color: #f1f2f3;
+            width: 150px;
+        }
+
+        #changeUser {
+            display: block;
+            margin-left: 30px;
+            margin-top: -2px;
+            font-size: 14px;
+            color: #1876f2;
+
+        }
+
+        #sidebar {
+            list-style-type: none;
+            background-color: #E4E6EB;
+            text-align: center;
+            margin: auto;
+            font-size: 20px;
+            line-height: 2em;
+            float: left;
+            top: 100%;
+            width: 100%;
+
+
+        }
+
+        #sidebarOuter {
+            float: left;
+            background-color: rgb(130, 248, 223);
+            width: 130px;
+            height: 350px;
+            display: inline-flex
+        }
+
+        #sidebar ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #classify {
+            margin: 10px 180px;
+        }
+
+        #table {
+            margin: 0px 0px 0px 180px;
+            text-align: center;
+            overflow: scroll;
+        }
+
+        #question {
+            width: 100vw;
+            height: 450px;
+            font-size: 18px;
+        }
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            margin: 0px;
+            border-collapse: collapse;
+            overflow: hidden;
+
+        }
+        td {
+            height: 25px;
+            font-size: 16px;
+        }
+
+        .td1 {
+            width: 50px;
+    
+        }
+
+        .td2 {
+            width: 110px;
+  
+        }
+
+        .td3 {
+            width: 50px;
+
+            font-size: 14px;
+        }
+
+        .td4 {
+            width: 100px;
+  
+        }
+        .td5{
+            width: 250px;
+        }
+        .td5Div{
+            width: 250px;
+            height: 70px;
+            display: block;
+            overflow-y:auto;
+        }
+        .td6{
+            width: 250px;
+        }
+        .td6Div{
+            width: 250px;
+            height: 70px; 
+            display: block;
+            overflow-y:auto;
+        }
+
+        .td7 {
+            width: 100px;
+           
+        }
+
+        #tbTitle {
+            font-size: 30px;
+
+        }
+
+        #options {
+            font-size: 16px;
+            text-align: center;
+            margin-left: 60px;
+            margin-right: 50px;
+            height: 30px
+        }
+
+        .order {
+            margin-left: 20px;
+        }
+
+        #top {
+            margin: auto;
+            margin-top: 30px;
+            background-color: rgb(203, 226, 255);
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+        }
+
+        /* 未連結 */
+        a:link {
+            color: -webkit-link;
+        }
+
+        /* 已連結過 */
+        a:visited {
+            color: -webkit-link;
+        }
+
+        /* 滑鼠移至連結 */
+        a:hover {
+            color: #26b0f0;
+        }
+
+        /* 選擇的連結 */
+        a:active {
+            color: #0061b1;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <div>
+            <h1 id="backstage"><a href="#">後台管理頁面</a></h1>
+            <div id="user">
+
+                <div id=avatarOuter>
+                    <a href="">
+                        <img id="avatar" src="image/user.png" alt="user">
+                        <span id="userName">高晞月</span>
+                    </a>
+                </div>
+
+                <span><a id="changeUser" href=""><u>切換使用者</u></a></span>
+
+            </div>
+
+        </div>
+        <div id="sidebarOuter">
+            <div id="sidebar">
+                <ul>
+                    <li><a href="#">最新消息</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">活動管理▼</a></li>
+                    <li class="hide"><a href="#">比賽</a></li>
+                    <li class="hide"><a href="#">投票</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">租賃相關▼</a></li>
+                    <li class="hide"><a href="#">桌遊</a></li>
+                    <li class="hide"><a href="#">場地</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">產品管理▼</a></ㄠ>
+                    <li class="hide"><a href="#">產品相關</a></li>
+                    <li class="hide"><a href="#">排行</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">討論區</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">客服中心▼</a></li>
+                    <li class="hide"><a href="#">即時問答</a></li>
+                    <li class="hide"><a href="#">線上問答</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">會員管理</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">購物車</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">訂單管理</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 插入檢視............................... -->
+    <div id="viewLiveQuestionModal" class="modal">
+        <!-- Modal content -->
+        <span id="viewLiveQuestionModalClose" class="close">&times;取消</span>
+        <div class="modal-content">
+            <!-- -------------------------------------------- -->
+            <table>
+                <caption id="viewTitle">
+                    檢視
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="th1">分類</th>
+                        <th class="th2">問題</th>
+                        <th class="th3">詳細內容</th>
+                        <th class="th4">答覆</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="item">
+                        <td id="viewLiveQuestionModalClassification" class="viewClassification"></td>
+                        <td id="viewLiveQuestionModalTitle" class="viewQuestionTitle"></td>
+                        <td>
+                            <div id="viewLiveQuestionModalContent" class="viewQuestionContent">
+                            </div>
+                        </td>
+                        <td>
+                            <div id="viewLiveQuestionModalReply" class="viewLiveQuestionReply">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- 插入修改............................. -->
+    <div id="eidtLiveQuestionModal" class="modal">
+        <!-- Modal content -->
+        <span id="eidtLiveQuestionModalClose" class="close">&times;取消</span>
+        <div class="modal-content">
+            <!-- edit-------------------------------------------- -->
+            <table id="editTable">
+                <caption id="editTitle"><b>修改問答</b><b></caption>
+
+                <tbody>
+                    <tr>
+                        <th class="th_classify">分類</th>
+                        <th class="th_q_title">問題</th>
+                        <th class="th_content">詳細內容</th>
+                        <th class="th_reply">答覆</th>
+                        <th class="th_add">修改</th>
+                    </tr>
+                    <td class="th_classify">
+                        <select id="edit_classify">
+                            <option value="購買">購買</option>
+                            <option value="租賃">租賃</option>
+                        </select>
+                    </td>
+                    <td class="edit_q_title">
+                        <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="14" placeholder="請輸入問題標題(100字以內)"
+                            maxlength="100"></textarea>
+                    </td>
+                    <td class="edit_q_content">
+                        <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30"
+                            placeholder="請輸入問題內容"></textarea>
+                    </td>
+                    <td class="edit_q_reply">
+                        <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30"
+                            placeholder="請輸入問題內容"></textarea>
+                    </td>
+                    <td><button id="reviseButton">確定</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- 原版板模.............................. -->
+    <div id="question">
+        <table id="table">
+            <thead>
+                <div id="classify">
+                    <span id="tbTitle">線上問答</span>
+                    <select name="classify" id="options">
+                        <option value="0" selected="true">請選擇分類</option>
+                        <option value="0">購買</option>
+                        <option value="0">租賃</option>
+                    </select>
+                    <span>
+                        <input id="new" class="order" type="radio" name=" " class=" " value=" ">
+                        <label for="new">依最新</label>
+                    </span>
+                    <span>
+                        <input id="old" class="order" type="radio" name=" " class=" " value=" ">
+                        <label for="old">依最舊</label>
+                    </span>
+                </div>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="td1" >分類</td>
+                    <td class="td2" >
+                        <div>發問者</div>
+                        <div>E-mail</div>
+                    </td>
+                    <td class="td1">時間</td>
+                    <td class="td4">問題標題</td>
+                    <td class="td5">詳細內容</td>
+                    <td class="td1">時間</td>
+                    <td class="td6">答覆</td>
+                    <td class="td7">管理</td>
+                </tr>
+                <tr>
+                    <td class="td1">購買</td>
+                    <td class="td2">
+                        <div>Siyue Kao</div>
+                        <div>bloodpinna@gmail.com</div>
+                    </td>
+                    <td class="td3">2021/09/06<br>0930</td>
+                    <td class="td4">商品還有嗎?可以預購嗎?</td>
+                    <td class="td5">
+                        <div class="td5Div">商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份商品。商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份</div>
+                    </td>
+                    <td class="td3">2021/09/06<br>1000</td>
+                    <td class="td6">
+                        <div class="td6Div">親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，預購恕不取消訂單，下單後本島約3個工作天內到貨離島約5-7個工作天。親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，請幫我下單，下單後本島約3個工作天內到貨離島約5-7個工作天，預購下單後恕不取消訂單。</div> 
+                    </td>
+                    <td class="td7">
+                        <div><button>檢視</button></div>
+                        <div><button>刪除</button></div>
+                        <div><button>修改</button></div>
+                    </td>
+                </tr> 
+            </tbody> 
+        </table>     
+    </div>
+    <div>
+        <footer>
+            <p id="top"><a href="#">TOP</a></p>
+        </footer>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function setUpModal() {
+            let newLiveQuestionModal = document.getElementById("newLiveQuestionModal");
+            // Get the button that opens the modal
+            let btn = document.getElementById("add");
+            // Get the <span> element that closes the modal
+            let closeBtn = document.getElementById("newLiveQuestionModalClose");
+            // When the user clicks the button, open the modal 
+            btn.onclick = function () {
+                newLiveQuestionModal.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function () {
+                newLiveQuestionModal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == newLiveQuestionModal) {
+                    newLiveQuestionModal.style.display = "none";
+                }
+            }
+
+            let viewLiveQuestionModal = document.getElementById("viewLiveQuestionModal");
+            // Get the <span> element that closes the modal
+            closeBtn = document.getElementById("viewLiveQuestionModalClose");
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function () {
+                viewLiveQuestionModal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == viewLiveQuestionModal) {
+                    viewLiveQuestionModal.style.display = "none";
+                }
+            }
+            let eidtLiveQuestionModal = document.getElementById("eidtLiveQuestionModal");
+            // Get the <span> element that closes the modal
+            closeBtn = document.getElementById("eidtLiveQuestionModalClose");
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function () {
+                eidtLiveQuestionModal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == eidtLiveQuestionModal) {
+                    eidtLiveQuestionModal.style.display = "none";
+                }
+            }
+
+
+        }
+        function postLiveQuestion(classification, title, content, reply) {
+            const axios = window.axios;
+            const requestBody = {
+                classification, title, content, reply
+            }
+            axios.post('http://localhost/api/live_questions.php', requestBody).then(function (response) { getLiveQuestions() })
+        }
+        function setUpCreateNewQuestionButton() {
+            let createQuestionButton = document.getElementById("createQuestionButton");
+            createQuestionButton.onclick = function () {
+                // TODO: check all filed were filled
+                postLiveQuestion(
+                    document.getElementById("td_classify").value,
+                    document.getElementById("td_q_title").value,
+                    document.getElementById("td_q_content").value,
+                    document.getElementById("td_q_reply").value,
+                )
+
+                let modal = document.getElementById("newLiveQuestionModal");
+                modal.style.display = "none";
+            }
+        }
+        function deleteLiveQuestions(id) {
+            const axios = window.axios;
+            axios.delete('http://localhost/api/live_questions.php', { data: { id } }).then(function (response) { getLiveQuestions(); })
+        }
+        function getLiveQuestions() {
+            const axios = window.axios;
+            axios.get('http://localhost/api/live_questions.php')
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                    var table = document.getElementById("table");
+                    var tbody = table.children[1];
+                    tbody.innerHTML = "";
+                    for (let question of response.data.live_questions) {
+                        //創建一個tr
+                        var tr = document.createElement("tr");
+                        //創建四個td
+
+                        var classificationTd = document.createElement("td")
+                        //classificationTd.innerHTML = `<div class="shown" id="classification${question.id}Text">${question.classification}</div>`
+                        classificationTd.innerText = question.classification
+                        var questionTd = document.createElement("td")
+                        questionTd.innerText = question.title
+                        //questionTd.className = "td-scrollable"
+                        var contentTd = document.createElement("td")
+                        var contentTdDiv = document.createElement("div")
+                        contentTdDiv.className = "td-scrollable"
+                        contentTdDiv.innerText = question.content
+                        var replyTd = document.createElement("td")
+                        var replyTdDiv = document.createElement("div")
+                        replyTdDiv.className = "td-scrollable"
+                        replyTdDiv.innerText = question.reply
+                        var viewButtonTd = document.createElement("td")
+                        var viewButton = document.createElement("button")
+                        viewButton.innerText = "檢視"
+                        viewButtonTd.appendChild(viewButton)
+                        viewButton.onclick = function () {
+                            viewLiveQuestionModal.style.display = "block";
+
+                            let viewLiveQuestionModalClassification = document.getElementById("viewLiveQuestionModalClassification");
+                            viewLiveQuestionModalClassification.innerText = question.classification
+                            let viewLiveQuestionModalTitle = document.getElementById("viewLiveQuestionModalTitle");
+                            viewLiveQuestionModalTitle.innerText = question.title
+                            let viewLiveQuestionModalContent = document.getElementById("viewLiveQuestionModalContent");
+                            viewLiveQuestionModalContent.innerText = question.content
+                            let viewLiveQuestionModalReply = document.getElementById("viewLiveQuestionModalReply");
+                            viewLiveQuestionModalReply.innerText = question.reply
+
+                            // TODO: replace content
+                        }
+                        var deleteButtonTd = document.createElement("td")
+                        var deleteButton = document.createElement("button")
+                        deleteButton.innerText = "刪除"
+                        deleteButton.onclick = function () {
+                            console.log(question.id);
+                            deleteLiveQuestions(question.id)
+
+                        }
+                        deleteButtonTd.appendChild(deleteButton)
+                        var editButtonTd = document.createElement("td")
+                        var editButton = document.createElement("button")
+                        editButton.innerText = "編輯"
+                        editButton.onclick = function () {
+                            eidtLiveQuestionModal.style.display = "block";
+                            // TODO: replace content
+                        }
+                        editButtonTd.appendChild(editButton)
+                        tr.appendChild(classificationTd);
+                        tr.appendChild(questionTd);
+                        contentTd.appendChild(contentTdDiv);
+                        tr.appendChild(contentTd);
+                        tr.appendChild(replyTd);
+                        replyTd.appendChild(replyTdDiv)
+                        tr.appendChild(viewButtonTd);
+                        tr.appendChild(deleteButtonTd);
+                        tr.appendChild(editButtonTd);
+                        tbody.appendChild(tr)
+                    }
+
+
+
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                });
+        }
+
+        setUpModal();
+        setUpCreateNewQuestionButton();
+        getLiveQuestions();
+
+    </script>
+</body>
+
+</html>
