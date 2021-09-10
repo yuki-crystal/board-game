@@ -274,7 +274,7 @@
             overflow: scroll;
         }
 
-        .viewLiveQuestionReply {
+        .viewOnlineQuestionReply {
             width: 600px;
             height: 300px;
             text-align: left;
@@ -515,9 +515,9 @@
             </div>
         </div>
         <!-- view開始-------------------------------------------------------------------- -->
-        <div id="viewLiveQuestionModal" class="modal">
+        <div id="viewOnlineQuestionModal" class="modal">
             <!-- Modal content -->
-            <span id="viewLiveQuestionModalClose" class="close">&times;取消</span>
+            <span id="viewOnlineQuestionModalClose" class="close">&times;取消</span>
             <div class="modal-content">
                 <table>
                     <caption id="viewTitle">
@@ -533,14 +533,15 @@
                     </thead>
                     <tbody>
                         <tr id="item">
-                            <td id="viewLiveQuestionModalClassification" class="viewClassification"></td>
-                            <td id="viewLiveQuestionModalTitle" class="viewQuestionTitle"></td>
+                            <td id="viewOnlineQuestionModalClassification" class="viewClassification"></td>
+                            <td id="viewOnlineQuestionModalEmail" class="viewEmail"></td>
+                            <td id="viewOnlineQuestionModalTitle" class="viewQuestionTitle"></td>
                             <td>
-                                <div id="viewLiveQuestionModalContent" class="viewQuestionContent">
+                                <div id="viewOnlineQuestionModalContent" class="viewQuestionContent">
                                 </div>
                             </td>
                             <td>
-                                <div id="viewLiveQuestionModalReply" class="viewLiveQuestionReply">
+                                <div id="viewOnlineQuestionModalReply" class="viewOnlineQuestionReply">
                                 </div>
                             </td>
                         </tr>
@@ -550,9 +551,9 @@
         </div>
         <!-- view結束-------------------------------------------------------------------- -->
         <!-- eidt開始-------------------------------------------------------------------- -->
-        <div id="eidtLiveQuestionModal" class="modal">
+        <div id="eidtOnlineQuestionModal" class="modal">
             <!-- Modal content -->
-            <span id="eidtLiveQuestionModalClose" class="close">&times;取消</span>
+            <span id="eidtOnlineQuestionModalClose" class="close">&times;取消</span>
             <div class="modal-content">
                 <!-- edit-------------------------------------------- -->
                 <table id="editTable">
@@ -596,10 +597,10 @@
                 <thead>
                     <div id="classify">
                         <span id="tbTitle">線上問答</span>
-                        <select name="classify" id="options">
-                            <option value="0" selected="true">請選擇分類</option>
-                            <option value="0">購買</option>
-                            <option value="0">租賃</option>
+                        <select name="classify" id="classificationFilter" onchange="getOnlineQuestions();">
+                            <option value="" selected="true">請選擇分類</option>
+                            <option value="購買">購買</option>
+                            <option value="租賃">租賃</option>
                         </select>
                         <span>
                             <input id="new" class="order" type="radio" name=" " class=" " value=" ">
@@ -610,21 +611,21 @@
                             <label for="old">依最舊</label>
                         </span>
                     </div>
-                </thead>
-                <tbody>
                     <tr>
-                        <td class="td1">分類</td>
-                        <td class="td2">
+                        <th class="td1">分類</th>
+                        <th class="td2">
                             <div>發問者</div>
                             <div>E-mail</div>
-                        </td>
-                        <td class="td1">時間</td>
-                        <td class="td4">問題標題</td>
-                        <td class="td5">詳細內容</td>
-                        <td class="td1">時間</td>
-                        <td class="td6">答覆</td>
-                        <td class="td7">管理</td>
+                        </th>
+                        <th class="td1">時間</th>
+                        <th class="td4">問題標題</th>
+                        <th class="td5">詳細內容</th>
+                        <th class="td1">時間</th>
+                        <th class="td6">答覆</th>
+                        <th class="td7">管理</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td class="td1">購買</td>
                         <td class="td2">
@@ -662,105 +663,70 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         function setUpModal() {
-            let newLiveQuestionModal = document.getElementById("newLiveQuestionModal");
-            // Get the button that opens the modal
-            let btn = document.getElementById("add");
+            let viewOnlineQuestionModal = document.getElementById("viewOnlineQuestionModal");
             // Get the <span> element that closes the modal
-            let closeBtn = document.getElementById("newLiveQuestionModalClose");
-            // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                newLiveQuestionModal.style.display = "block";
-            }
+            closeBtn = document.getElementById("viewOnlineQuestionModalClose");
             // When the user clicks on <span> (x), close the modal
             closeBtn.onclick = function () {
-                newLiveQuestionModal.style.display = "none";
+                viewOnlineQuestionModal.style.display = "none";
             }
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
-                if (event.target == newLiveQuestionModal) {
-                    newLiveQuestionModal.style.display = "none";
+                if (event.target == viewOnlineQuestionModal) {
+                    viewOnlineQuestionModal.style.display = "none";
                 }
             }
-
-            let viewLiveQuestionModal = document.getElementById("viewLiveQuestionModal");
+            let eidtOnlineQuestionModal = document.getElementById("eidtOnlineQuestionModal");
             // Get the <span> element that closes the modal
-            closeBtn = document.getElementById("viewLiveQuestionModalClose");
+            closeBtn = document.getElementById("eidtOnlineQuestionModalClose");
             // When the user clicks on <span> (x), close the modal
             closeBtn.onclick = function () {
-                viewLiveQuestionModal.style.display = "none";
+                eidtOnlineQuestionModal.style.display = "none";
             }
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
-                if (event.target == viewLiveQuestionModal) {
-                    viewLiveQuestionModal.style.display = "none";
-                }
-            }
-            let eidtLiveQuestionModal = document.getElementById("eidtLiveQuestionModal");
-            // Get the <span> element that closes the modal
-            closeBtn = document.getElementById("eidtLiveQuestionModalClose");
-            // When the user clicks on <span> (x), close the modal
-            closeBtn.onclick = function () {
-                eidtLiveQuestionModal.style.display = "none";
-            }
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == eidtLiveQuestionModal) {
-                    eidtLiveQuestionModal.style.display = "none";
+                if (event.target == eidtOnlineQuestionModal) {
+                    eidtOnlineQuestionModal.style.display = "none";
                 }
             }
 
 
         }
-        function postLiveQuestion(classification, title, content, reply) {
+        function postOnlineQuestion(classification, title, content, reply) {
             const axios = window.axios;
             const requestBody = {
                 classification, title, content, reply
             }
-            axios.post('http://localhost/api/live_questions.php', requestBody).then(function (response) { getLiveQuestions() })
+            axios.post('http://localhost/api/questions.php', requestBody).then(function (response) { getOnlineQuestions() })
         }
-        function putLiveQuestion(id, classification, title, content, reply) {
+        function putOnlineQuestion(id, classification, title, content, reply) {
             const axios = window.axios;
             const requestBody = {
                 id, classification, title, content, reply
             }
-            axios.put('http://localhost/api/live_questions.php', requestBody).then(function (response) { getLiveQuestions() })
-        }
-        function setUpCreateNewQuestionButton() {
-            let createQuestionButton = document.getElementById("createQuestionButton");
-            createQuestionButton.onclick = function () {
-                // TODO: check all filed were filled
-                postLiveQuestion(
-                    document.getElementById("td_classify").value,
-                    document.getElementById("td_q_title").value,
-                    document.getElementById("td_q_content").value,
-                    document.getElementById("td_q_reply").value,
-                )
-
-                let modal = document.getElementById("newLiveQuestionModal");
-                modal.style.display = "none";
-            }
+            axios.put('http://localhost/api/questions.php', requestBody).then(function (response) { getOnlineQuestions() })
         }
         function setUpUpdateQuestionButton() {
             let editQuestionButton = document.getElementById("editQuestionButton");
             editQuestionButton.onclick = function () {
                 // TODO: check all filed were filled
-                putLiveQuestion(
-                    currentLiveQuestionId,
+                putOnlineQuestion(
+                    currentOnlineQuestionId,
                     document.getElementById("edit_classify").value,
                     document.getElementById("edit_q_title").value,
                     document.getElementById("edit_q_content").value,
                     document.getElementById("edit_q_reply").value,
                 )
 
-                let modal = document.getElementById("eidtLiveQuestionModal");
+                let modal = document.getElementById("eidtOnlineQuestionModal");
                 modal.style.display = "none";
             }
         }
-        function deleteLiveQuestions(id) {
+        function deleteOnlineQuestions(id) {
             const axios = window.axios;
-            axios.delete('http://localhost/api/live_questions.php', { data: { id } }).then(function (response) { getLiveQuestions(); })
+            axios.delete('http://localhost/api/questions.php', { data: { id } }).then(function (response) { getOnlineQuestions(); })
         }
-        function getLiveQuestions() {
+        function getOnlineQuestions() {
             const axios = window.axios;
             let requestParameters = {
                 params: {
@@ -770,7 +736,7 @@
             if (classificationFilterValue !== "") {
                 requestParameters.params.classification = classificationFilterValue
             }
-            axios.get('http://localhost/api/live_questions.php', requestParameters)
+            axios.get('http://localhost/api/questions.php', requestParameters)
                 .then(function (response) {
                     // handle success
                     console.log(response);
@@ -778,14 +744,17 @@
                     var table = document.getElementById("table");
                     var tbody = table.children[1];
                     tbody.innerHTML = "";
-                    for (let question of response.data.live_questions) {
+                    for (let question of response.data.questions) {
                         //創建一個tr
                         var tr = document.createElement("tr");
                         //創建四個td
 
                         var classificationTd = document.createElement("td")
-                        //classificationTd.innerHTML = `<div class="shown" id="classification${question.id}Text">${question.classification}</div>`
                         classificationTd.innerText = question.classification
+                        var emailTd = document.createElement("td")
+                        emailTd.innerText = question.email
+                        var askTimeTd = document.createElement("td")
+                        askTimeTd.innerText = question.asking_time
                         var questionTd = document.createElement("td")
                         questionTd.innerText = question.title
                         //questionTd.className = "td-scrollable"
@@ -793,6 +762,9 @@
                         var contentTdDiv = document.createElement("div")
                         contentTdDiv.className = "td-scrollable"
                         contentTdDiv.innerText = question.content
+                        var replyTimeTd = document.createElement("td")
+                        replyTimeTd.innerText = question.reply_time
+
                         var replyTd = document.createElement("td")
                         var replyTdDiv = document.createElement("div")
                         replyTdDiv.className = "td-scrollable"
@@ -802,15 +774,21 @@
                         viewButton.innerText = "檢視"
                         viewButtonTd.appendChild(viewButton)
                         viewButton.onclick = function () {
-                            viewLiveQuestionModal.style.display = "block";
-                            let viewLiveQuestionModalClassification = document.getElementById("viewLiveQuestionModalClassification");
-                            viewLiveQuestionModalClassification.innerText = question.classification
-                            let viewLiveQuestionModalTitle = document.getElementById("viewLiveQuestionModalTitle");
-                            viewLiveQuestionModalTitle.innerText = question.title
-                            let viewLiveQuestionModalContent = document.getElementById("viewLiveQuestionModalContent");
-                            viewLiveQuestionModalContent.innerText = question.content
-                            let viewLiveQuestionModalReply = document.getElementById("viewLiveQuestionModalReply");
-                            viewLiveQuestionModalReply.innerText = question.reply
+                            viewOnlineQuestionModal.style.display = "block";
+                            let viewOnlineQuestionModalClassification = document.getElementById("viewOnlineQuestionModalClassification");
+                            viewOnlineQuestionModalClassification.innerText = question.classification
+                            let viewOnlineQuestionModalEmail = document.getElementById("viewOnlineQuestionModalEmail");
+                            viewOnlineQuestionModalEmail.innerText = question.email
+                            let viewOnlineQuestionModalAskTime = document.getElementById("viewOnlineQuestionModalAskTime");
+                            viewOnlineQuestionModalAskTime.innerText = question.askTime
+                            let viewOnlineQuestionModalReplyTime = document.getElementById("viewOnlineQuestionModalReplyTime");
+                            viewOnlineQuestionModalReplyTime.innerText = question.replyTime
+                            let viewOnlineQuestionModalTitle = document.getElementById("viewOnlineQuestionModalTitle");
+                            viewOnlineQuestionModalTitle.innerText = question.title
+                            let viewOnlineQuestionModalContent = document.getElementById("viewOnlineQuestionModalContent");
+                            viewOnlineQuestionModalContent.innerText = question.content
+                            let viewOnlineQuestionModalReply = document.getElementById("viewOnlineQuestionModalReply");
+                            viewOnlineQuestionModalReply.innerText = question.reply
 
                             // TODO: replace content
                         }
@@ -819,7 +797,7 @@
                         deleteButton.innerText = "刪除"
                         deleteButton.onclick = function () {
                             console.log(question.id);
-                            deleteLiveQuestions(question.id)
+                            deleteOnlineQuestions(question.id)
 
                         }
                         deleteButtonTd.appendChild(deleteButton)
@@ -827,23 +805,32 @@
                         var editButton = document.createElement("button")
                         editButton.innerText = "編輯"
                         editButton.onclick = function () {
-                            eidtLiveQuestionModal.style.display = "block";
-                            let editLiveQuestionModalClassification = document.getElementById("edit_classify");
-                            editLiveQuestionModalClassification.value = question.classification
-                            let editLiveQuestionModalTitle = document.getElementById("edit_q_title");
-                            editLiveQuestionModalTitle.innerText = question.title
-                            let editLiveQuestionModalContent = document.getElementById("edit_q_content");
-                            editLiveQuestionModalContent.innerText = question.content
-                            let editLiveQuestionModalReply = document.getElementById("edit_q_reply");
-                            editLiveQuestionModalReply.innerText = question.reply
-                            currentLiveQuestionId = question.id
+                            eidtOnlineQuestionModal.style.display = "block";
+                            let editOnlineQuestionModalClassification = document.getElementById("edit_classify");
+                            editOnlineQuestionModalClassification.value = question.classification
+                            let editOnlineQuestionModalEmail = document.getElementById("edit_classify");
+                            editOnlineQuestionModalEmail.value = question.email
+                            let editOnlineQuestionModalAskTime = document.getElementById("edit_classify");
+                            editOnlineQuestionModalAskTime.value = question.askTime
+                            let editOnlineQuestionModalReplyTime = document.getElementById("edit_classify");
+                            editOnlineQuestionModalReplyTime.value = question.replyTime
+                            let editOnlineQuestionModalTitle = document.getElementById("edit_q_title");
+                            editOnlineQuestionModalTitle.innerText = question.title
+                            let editOnlineQuestionModalContent = document.getElementById("edit_q_content");
+                            editOnlineQuestionModalContent.innerText = question.content
+                            let editOnlineQuestionModalReply = document.getElementById("edit_q_reply");
+                            editOnlineQuestionModalReply.innerText = question.reply
+                            currentOnlineQuestionId = question.id
                             // TODO: replace content
                         }
                         editButtonTd.appendChild(editButton)
                         tr.appendChild(classificationTd);
+                        tr.appendChild(emailTd);
+                        tr.appendChild(askTimeTd);
                         tr.appendChild(questionTd);
                         contentTd.appendChild(contentTdDiv);
                         tr.appendChild(contentTd);
+                        tr.appendChild(replyTimeTd);
                         tr.appendChild(replyTd);
                         replyTd.appendChild(replyTdDiv)
                         tr.appendChild(viewButtonTd);
@@ -858,11 +845,10 @@
                     console.log(error);
                 });
         }
-        var currentLiveQuestionId = -1;
+        var currentOnlineQuestionId = -1;
         setUpModal();
-        setUpCreateNewQuestionButton();
         setUpUpdateQuestionButton();
-        getLiveQuestions();
+        getOnlineQuestions();
 
     </script>
 </body>
