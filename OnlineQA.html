@@ -114,16 +114,17 @@
             margin: 0px;
             border-collapse: collapse;
             overflow: hidden;
+            text-align: center;
 
         }
 
         td {
             height: 37.5px;
-            font-size: 24px;
+            font-size: 20px;
         }
 
         .td1 {
-            width: 75px;
+            width: 70px;
 
         }
 
@@ -167,7 +168,6 @@
 
         .td7 {
             width: 150px;
-
         }
 
         #tbTitle {
@@ -216,37 +216,8 @@
             margin: 15px 270px;
         }
 
-        table,
-        th,
-        td {
-            border: 1.5px solid black;
-            margin: 0px;
-            border-collapse: collapse;
-            overflow: auto;
-        }
-
         th {
             height: 37.5px;
-        }
-
-        .th1 {
-            width: 75px;
-
-        }
-
-        .th2 {
-            width: 180px;
-
-        }
-
-        .th3 {
-            width: 480px;
-
-        }
-
-        .th4 {
-            width: 525px;
-
         }
 
         #viewTitle {
@@ -262,20 +233,20 @@
 
         .viewQuestionTitle {
             text-align: left;
-            width: 270px;
+            width: 300px;
             height: 255px;
             overflow: scroll;
         }
 
         .viewQuestionContent {
-            width: 600px;
+            width: 500px;
             height: 300px;
             text-align: left;
             overflow: scroll;
         }
 
         .viewOnlineQuestionReply {
-            width: 600px;
+            width: 500px;
             height: 300px;
             text-align: left;
             overflow: scroll;
@@ -308,37 +279,18 @@
             line-height: 45px;
         }
 
+        .th_classify {
+            width: 30px;
+            font-weight: bold;
+            text-align: center;
+
+        }
+
         #editTitle {
             font-size: 33px;
             margin-bottom: 7.5px;
             background-color: rgba(249, 251, 252, 0.842);
             font-weight: bold;
-        }
-
-        .th_classify {
-            width: 135px;
-            font-weight: bold;
-            text-align: center;
-
-        }
-
-        .th_q_title {
-            width: 270px;
-            font-weight: bold;
-            text-align: center;
-
-        }
-
-        .th_content {
-            width: 525px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .th_reply {
-            width: 525px;
-            font-weight: bold;
-            text-align: center;
         }
 
         .th_add {
@@ -348,30 +300,53 @@
 
         }
 
+        #edit_classify {
+            font-size: 20px;
+
+        }
+
+        .edit_q_time {
+            font-size: 20px;
+        }
+
+        #edit_q_name {
+            font-size: 16px;
+            resize: none;
+            text-align: left;
+        }
+
+        #edit_q_e-mail {
+            font-size: 16px;
+            height: 25px;
+            ;
+        }
 
         #edit_q_title {
-            width: 270px;
+            width: 250px;
             height: 255px;
+            font-size: 18px;
         }
 
         #edit_q_content {
-            width: 525px;
+            width: 450px;
             height: 255px;
             text-align: left;
             overflow: scroll;
+            font-size: 18px;
         }
 
         #edit_q_reply {
-            width: 525px;
+            width: 450px;
             height: 255px;
             text-align: left;
             overflow: scroll;
+            font-size: 18px;
         }
 
         #editQuestionButton {
             position: relative;
             top: 10%;
-            left: 50%;
+            left: 30%;
             transform: translate(-50%, -50%)
         }
 
@@ -428,13 +403,44 @@
             /* Black w/ opacity */
         }
 
+        .editmodal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 50px;
+            /* Location of the box */
+            left: -30px;
+            top: 120px;
+            width: 2000px;
+            /* Full width */
+            height: 555px;
+            /* Full height */
+            overflow: scroll;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Black w/ opacity */
+        }
+
         /* Modal Content */
         .modal-content {
             background-color: #fefefe;
             margin: auto;
             padding: 30px;
             border: 1.5px solid #888;
-            width: 1575px;
+            width: 1600px;
+        }
+
+        .editmodal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1.5px solid #888;
+            width: 1850px;
         }
 
         /* The Close Button */
@@ -443,7 +449,7 @@
             float: right;
             font-size: 30px;
             font-weight: bold;
-            margin-top: -75px;
+            margin-top: -55px;
         }
 
         .close:hover,
@@ -525,23 +531,37 @@
                     </caption>
                     <thead>
                         <tr>
-                            <th class="th1">分類</th>
-                            <th class="th2">問題</th>
-                            <th class="th3">詳細內容</th>
-                            <th class="th4">答覆</th>
+                            <td class="td1">分類</td>
+                            <td class="td2">
+                                <div>發問者</div>
+                                <div>E-mail</div>
+                            </td>
+                            <td class="td1">時間</td>
+                            <td class="td4">問題標題</td>
+                            <td class="td5">詳細內容</td>
+                            <td class="td1">時間</td>
+                            <td class="td6">答覆</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr id="item">
                             <td id="viewOnlineQuestionModalClassification" class="viewClassification"></td>
-                            <td id="viewOnlineQuestionModalEmail" class="viewEmail"></td>
+                            <td>
+                                <!-- 加入使用者名稱 -->
+                                <div id="viewOnlineQuestionModalUser" class="viewUser"></div>
+                                <div id="viewOnlineQuestionModalEmail" class="viewEmail"></div>
+                            </td>
+                            <!-- 加入提問時間 -->
+                            <td id="viewOnlineQuestionModalAskTime" class="viewOnlineQuestionModalAskTime"></td>
                             <td id="viewOnlineQuestionModalTitle" class="viewQuestionTitle"></td>
                             <td>
                                 <div id="viewOnlineQuestionModalContent" class="viewQuestionContent">
                                 </div>
                             </td>
+                            <!-- 加入回覆時間 -->
+                            <td id="viewOnlineQuestionModalReplyTime" class="viewOnlineQuestionModalReplyTime"></td>
                             <td>
-                                <div id="viewOnlineQuestionModalReply" class="viewOnlineQuestionReply">
+                                <div id="viewOnlineQuestionModalReplyTime" class="viewOnlineQuestionReply">
                                 </div>
                             </td>
                         </tr>
@@ -551,39 +571,67 @@
         </div>
         <!-- view結束-------------------------------------------------------------------- -->
         <!-- eidt開始-------------------------------------------------------------------- -->
-        <div id="eidtOnlineQuestionModal" class="modal">
+        <div id="eidtOnlineQuestionModal" class="editmodal">
             <!-- Modal content -->
             <span id="eidtOnlineQuestionModalClose" class="close">&times;取消</span>
-            <div class="modal-content">
+            <div class="editmodal-content">
                 <!-- edit-------------------------------------------- -->
-                <table id="editTable">
-                    <caption id="editTitle"><b>修改問答</b><b></caption>
-
-                    <tbody>
+                <table>
+                    <caption id="editTitle">
+                        <b>修改問題/回覆</b>
+                    </caption>
+                    <thead>
                         <tr>
-                            <th class="th_classify">分類</th>
-                            <th class="th_q_title">問題</th>
-                            <th class="th_content">詳細內容</th>
-                            <th class="th_reply">答覆</th>
-                            <th class="th_add">修改</th>
+                            <td class="td1">分類</td>
+                            <td class="td2">
+                                <div>發問者</div>
+                                <div>E-mail</div>
+                            </td>
+                            <td class="td1">時間</td>
+                            <td class="td4">問題標題</td>
+                            <td class="td5">詳細內容</td>
+                            <td class="td1">時間</td>
+                            <td class="td6">答覆</td>
+                            <td class="td7">送出</td>
+                            <!-- 增加按鈕 -->
                         </tr>
+                    </thead>
+                    <tbody>
                         <td class="th_classify">
-                            <select id="edit_classify">
-                                <option value="購買">購買</option>
+                            <select id="edit_classify" name="classify">
+                                <option value="購買" selected>購買</option>
                                 <option value="租賃">租賃</option>
                             </select>
                         </td>
+                        <td>
+                            <div>
+                                <textarea id="edit_q_name" name="edit_q_name" rows="2" cols="20" maxlength="30"
+                                    placeholder="請輸入姓名"></textarea>
+                            </div>
+                            <div>
+                                <input type="email" id="edit_q_e-mail" name="edit_q_e-mail" size="20" maxlength="50"
+                                    placeholder="請輸入e-mail">
+                            </div>
+                        </td>
+                        <td class="edit_q_time">
+                            <input type="date" name="date" id="date">
+                            <input type="time" name="time" id="time">
+                        </td>
                         <td class="edit_q_title">
-                            <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="14"
+                            <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="30"
                                 placeholder="請輸入問題標題(100字以內)" maxlength="100"></textarea>
                         </td>
-                        <td class="edit_q_content">
+                        <td class="edit_q_time">
                             <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30"
-                                placeholder="請輸入問題內容"></textarea>
+                                placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
+                        </td>
+                        <td class="edit_q_time">
+                            <input type="date" name="date" id="date">
+                            <input type="time" name="time" id="time">
                         </td>
                         <td class="edit_q_reply">
                             <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30"
-                                placeholder="請輸入問題內容"></textarea>
+                                placeholder="請輸入問題內容(1000字以內" maxlength="1000"></textarea>
                         </td>
                         <td><button id="editQuestionButton">確定</button></td>
                         </tr>
@@ -751,28 +799,33 @@
 
                         var classificationTd = document.createElement("td")
                         classificationTd.innerText = question.classification
+                        classificationTd.className = "td1"
                         var emailTd = document.createElement("td")
                         emailTd.innerText = question.email
+                        emailTd.className = "td2"
                         var askTimeTd = document.createElement("td")
                         askTimeTd.innerText = question.asking_time
+                        askTimeTd.className = "td3"
                         var questionTd = document.createElement("td")
                         questionTd.innerText = question.title
-                        //questionTd.className = "td-scrollable"
+                        questionTd.className = "td4"
                         var contentTd = document.createElement("td")
                         var contentTdDiv = document.createElement("div")
-                        contentTdDiv.className = "td-scrollable"
+                        contentTdDiv.className = "td5Div"
                         contentTdDiv.innerText = question.content
                         var replyTimeTd = document.createElement("td")
                         replyTimeTd.innerText = question.reply_time
-
+                        replyTimeTd.className = "td3"
                         var replyTd = document.createElement("td")
                         var replyTdDiv = document.createElement("div")
-                        replyTdDiv.className = "td-scrollable"
+                        replyTdDiv.className = "td6Div"
                         replyTdDiv.innerText = question.reply
                         var viewButtonTd = document.createElement("td")
+                        var viewButtonDiv = document.createElement("div")
                         var viewButton = document.createElement("button")
                         viewButton.innerText = "檢視"
-                        viewButtonTd.appendChild(viewButton)
+                        viewButtonTd.appendChild(viewButtonDiv)
+                        viewButtonDiv.appendChild(viewButton)
                         viewButton.onclick = function () {
                             viewOnlineQuestionModal.style.display = "block";
                             let viewOnlineQuestionModalClassification = document.getElementById("viewOnlineQuestionModalClassification");
@@ -792,7 +845,7 @@
 
                             // TODO: replace content
                         }
-                        var deleteButtonTd = document.createElement("td")
+                        var deleteButtonDiv = document.createElement("div")
                         var deleteButton = document.createElement("button")
                         deleteButton.innerText = "刪除"
                         deleteButton.onclick = function () {
@@ -800,8 +853,8 @@
                             deleteOnlineQuestions(question.id)
 
                         }
-                        deleteButtonTd.appendChild(deleteButton)
-                        var editButtonTd = document.createElement("td")
+                        deleteButtonDiv.appendChild(deleteButton)
+                        var editButtonDiv = document.createElement("div")
                         var editButton = document.createElement("button")
                         editButton.innerText = "編輯"
                         editButton.onclick = function () {
@@ -823,19 +876,23 @@
                             currentOnlineQuestionId = question.id
                             // TODO: replace content
                         }
-                        editButtonTd.appendChild(editButton)
+                        editButtonDiv.appendChild(editButton)
                         tr.appendChild(classificationTd);
                         tr.appendChild(emailTd);
                         tr.appendChild(askTimeTd);
                         tr.appendChild(questionTd);
-                        contentTd.appendChild(contentTdDiv);
                         tr.appendChild(contentTd);
+                        contentTd.appendChild(contentTdDiv);
                         tr.appendChild(replyTimeTd);
                         tr.appendChild(replyTd);
-                        replyTd.appendChild(replyTdDiv)
+                        replyTd.appendChild(replyTdDiv);
                         tr.appendChild(viewButtonTd);
-                        tr.appendChild(deleteButtonTd);
-                        tr.appendChild(editButtonTd);
+                        viewButtonTd.appendChild(viewButtonDiv);
+                        viewButtonDiv.appendChild(viewButton);
+                        viewButtonTd.appendChild(deleteButtonDiv);
+                        deleteButtonDiv.appendChild(deleteButton);
+                        viewButtonTd.appendChild(editButtonDiv);
+                        editButtonDiv.appendChild(editButton);
                         tbody.appendChild(tr)
                     }
 

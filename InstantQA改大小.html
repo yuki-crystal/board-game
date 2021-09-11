@@ -8,52 +8,52 @@
     <title>Document</title>
     <style>
         #outer {
-            margin-left: 30px;
+            margin-left: 45px;
         }
 
         #backstage {
-            width: 270px;
-            height: 50px;
-            border: 1px solid black;
-            font-size: 30px;
-            letter-spacing: 2px;
+            width: 405px;
+            height: 75px;
+            border: 1.5px solid black;
+            font-size: 45px;
+            letter-spacing: 3px;
             text-align: center;
             display: inline-block;
-            padding-top: 4px;
+            padding-top: 6px;
         }
 
         #user {
             float: right;
-            margin-right: 80px;
-            font-size: 20px;
-            letter-spacing: 1px;
+            margin-right: 120px;
+            font-size: 30px;
+            letter-spacing: 1.5px;
         }
 
         #userName {
-            font-size: 20px;
+            font-size: 30px;
             font-weight: bold;
             position: relative;
-            top: -10px;
+            top: -15px;
         }
 
         #avatar {
-            margin-top: 5px;
-            margin-left: 15px;
-            height: 40px;
+            margin-top: 7.5px;
+            margin-left: 22.5px;
+            height: 60px;
         }
 
         #avatarOuter {
-            margin-top: 15px;
-            border-radius: 50px;
+            margin-top: 22.5px;
+            border-radius: 75px;
             background-color: #f1f2f3;
-            width: 150px;
+            width: 225px;
         }
 
         #changeUser {
             display: block;
-            margin-left: 30px;
-            margin-top: -2px;
-            font-size: 14px;
+            margin-left: 45px;
+            margin-top: -3px;
+            font-size: 21px;
             color: #1876f2;
 
         }
@@ -63,8 +63,8 @@
             background-color: #E4E6EB;
             text-align: center;
             margin: auto;
-            font-size: 20px;
-            line-height: 2em;
+            font-size: 30px;
+            line-height: 3em;
             float: left;
             top: 100%;
             width: 100%;
@@ -75,8 +75,8 @@
         #sidebarOuter {
             float: left;
             background-color: rgb(130, 248, 223);
-            width: 130px;
-            height: 350px;
+            width: 195px;
+            height: 525px;
             display: inline-flex
         }
 
@@ -89,8 +89,8 @@
 
         #question {
             width: 100vw;
-            height: 450px;
-            font-size: 18px;
+            height: 675px;
+            font-size: 27px;
         }
 
         #table {
@@ -100,20 +100,20 @@
         }
 
         #classify {
-            margin: 10px 180px;
+            margin: 15px 270px;
         }
 
         #tbTitle {
-            font-size: 30px;
+            font-size: 45px;
 
         }
 
         #add {
             float: right;
             background-color: #E4E6EB;
-            font-size: 20px;
-            margin-top: 15px;
-            margin-right: -55px;
+            font-size: 30px;
+            margin-top: 22.5px;
+            margin-right: -82.5px;
         }
 
         table,
@@ -127,45 +127,45 @@
         }
 
         th {
-            height: 25px;
+            height: 37.5px;
         }
 
         .th1 {
-            width: 50px;
+            width: 75px;
 
         }
 
         .th2 {
-            width: 120px;
+            width: 180px;
 
         }
 
         .th3 {
-            width: 320px;
+            width: 480px;
 
         }
 
         .td3Div {
-            width: 350px;
-            height: 100px;
+            width: 525px;
+            height: 150px;
             display: block;
             overflow-y: auto;
         }
 
         .th4 {
-            width: 350px;
+            width: 525px;
 
         }
 
         .td4Div {
-            width: 350px;
-            height: 100px;
+            width: 525px;
+            height: 150px;
             display: block;
             overflow-y: auto;
         }
 
         .th5 {
-            width: 150px;
+            width: 225px;
 
         }
 
@@ -175,14 +175,14 @@
 
         .viewQuestionTitle {
             text-align: left;
-            width: 180px;
-            height: 170px;
+            width: 270px;
+            height: 255px;
             overflow: scroll;
         }
 
         .viewQuestionContent {
-            width: 400px;
-            height: 200px;
+            width: 600px;
+            height: 300px;
             text-align: left;
             overflow: scroll;
         }
@@ -503,11 +503,10 @@
                     </td>
                     <td class="td_q_content">
                         <textarea id="td_q_content" name="td_q_content" rows="5" cols="30"
-                            placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
+                            placeholder="請輸入問題內容"></textarea>
                     </td>
                     <td class="td_q_reply">
-                        <textarea id="td_q_reply" name="td_q_reply" rows="5" cols="30" placeholder="請輸入問題內容(1000字以內)"
-                            maxlength="1000"></textarea>
+                        <textarea id="td_q_reply" name="td_q_reply" rows="5" cols="30" placeholder="請輸入問題內容"></textarea>
                     </td>
                     <td><button id="createQuestionButton">送出</button></td>
                     </tr>
@@ -716,15 +715,6 @@
 
                 let modal = document.getElementById("newLiveQuestionModal");
                 modal.style.display = "none";
-                // clear input field
-                let newLiveQuestionModalClassification = document.getElementById("td_classify");
-                newLiveQuestionModalClassification.value = "購買"
-                let newLiveQuestionModalTitle = document.getElementById("td_q_title");
-                newLiveQuestionModalTitle.value = ""
-                let newLiveQuestionModalContent = document.getElementById("td_q_content");
-                newLiveQuestionModalContent.value = ""
-                let newLiveQuestionModalReply = document.getElementById("td_q_reply");
-                newLiveQuestionModalReply.value = ""
             }
         }
         function setUpUpdateQuestionButton() {
@@ -741,7 +731,6 @@
 
                 let modal = document.getElementById("eidtLiveQuestionModal");
                 modal.style.display = "none";
-
             }
         }
         function deleteLiveQuestions(id) {
