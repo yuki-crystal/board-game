@@ -12,55 +12,69 @@
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="sideAndNav.css" />
     <style>
-      /* 頁碼開始 */
-	/*設定div樣式的整體佈局*/
-	.page-icon{
-		margin:20px 0 0 0;/*設定距離頂部20畫素*/
-		font-size:0;/*修復行內元素之間空隙間隔*/
-		text-align:center;/*設定內容居中顯示*/
-	}
-	
-	/*設定共有的的樣式佈局，主要是進行程式碼優化，提高執行效率*/
-	.page-icon a,.page-disabled,.page-next{
-		border:1px solid #ccc;
-		border-radius:3px;
-		padding:4px 10px 5px;
-		font-size:14PX;/*修復行內元素之間空隙間隔*/
-		margin-right:10px;
-	}
-	
-	/*對 a 標籤進行樣式佈局 */
-	.page-icon a{
-		text-decoration:none;/*取消連結的下劃線*/
-		color:#005aa0;
-	}
-	
-	.page-current{
-		color:#ff6600;
-		padding:4px 10px 5px;
-		font-size:14PX;/*修復行內元素之間空隙間隔*/
-	}
-	
-	.page-disabled{
-		color:#ccc;
-	}
-	
-	.page-next i,.page-disabled i{
-		cursor:pointer;/*設定滑鼠經過時的顯示狀態，這裡設定的是顯示狀態為小手狀態*/
-		display:inline-block;/*設定顯示的方式為行內塊元素*/
-		width:5px;
-		height:9px;
-		background-image:url(http://img.mukewang.com/547fdbc60001bab900880700.gif);/*獲取圖示的背景連結*/
-	}
-	.page-disabled i{
-		background-position:-80px -608px;
-		margin-right:3px;
-	}
+        /* 頁碼開始 */
+        /*設定div樣式的整體佈局*/
+        .page-icon {
+            margin: 20px 0 0 0;
+            /*設定距離頂部20畫素*/
+            font-size: 0;
+            /*修復行內元素之間空隙間隔*/
+            text-align: center;
+            /*設定內容居中顯示*/
+        }
 
-	.page-next i{
-		background-position:-62px -608px;
-		margin-left:3px;
-	}
+        /*設定共有的的樣式佈局，主要是進行程式碼優化，提高執行效率*/
+        .page-icon a,
+        .page-disabled,
+        .page-next {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 4px 10px 5px;
+            font-size: 14PX;
+            /*修復行內元素之間空隙間隔*/
+            margin-right: 10px;
+        }
+
+        /*對 a 標籤進行樣式佈局 */
+        .page-icon a {
+            text-decoration: none;
+            /*取消連結的下劃線*/
+            color: #005aa0;
+        }
+
+        .page-current {
+            color: #ff6600;
+            padding: 4px 10px 5px;
+            font-size: 14PX;
+            /*修復行內元素之間空隙間隔*/
+        }
+
+        .page-disabled {
+            color: #ccc;
+        }
+
+        .page-next i,
+        .page-disabled i {
+            cursor: pointer;
+            /*設定滑鼠經過時的顯示狀態，這裡設定的是顯示狀態為小手狀態*/
+            display: inline-block;
+            /*設定顯示的方式為行內塊元素*/
+            width: 5px;
+            height: 9px;
+            background-image: url(http://img.mukewang.com/547fdbc60001bab900880700.gif);
+            /*獲取圖示的背景連結*/
+        }
+
+        .page-disabled i {
+            background-position: -80px -608px;
+            margin-right: 3px;
+        }
+
+        .page-next i {
+            background-position: -62px -608px;
+            margin-left: 3px;
+        }
+
         /* 頁碼結束 */
         @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Roboto+Mono:wght@500&display=swap");
 
@@ -352,7 +366,7 @@
         }
 
         .td3 {
-            width:100px;
+            width: 100px;
 
             font-size: 18px;
         }
@@ -444,7 +458,7 @@
             background-color: rgba(249, 251, 252, 0.6);
             font-weight: bold;
             text-align: center;
-            caption-side:top;
+            caption-side: top;
         }
 
         .viewClassification {
@@ -513,7 +527,7 @@
             background-color: rgba(249, 251, 252, 0.842);
             font-weight: bold;
             text-align: center;
-            caption-side:top;
+            caption-side: top;
         }
 
         .th_add {
@@ -783,210 +797,212 @@
 
     <!-- view開始-------------------------------------------------------------------- -->
     <div id="bodywith">
-    <div id="viewOnlineQuestionModal" class="modal">
-        <!-- Modal content -->
-        <span id="viewOnlineQuestionModalClose" class="close">&times;取消</span>
-        <div class="modal-content">
-            <table>
-                <caption id="viewTitle">
-                    檢視
-                </caption>
-                <thead>
-                    <tr>
-                        <td class="td1">分類</td>
-                        <td class="td2">
-                            <div>發問者</div>
-                            <div>E-mail</div>
-                        </td>
-                        <td class="td1">時間</td>
-                        <td class="td4">問題標題</td>
-                        <td class="td5">詳細內容</td>
-                        <td class="td1">時間</td>
-                        <td class="td6">答覆</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="item">
-                        <td id="viewOnlineQuestionModalClassification" class="viewClassification"></td>
-                        <td>
-                            <!-- 加入使用者名稱 -->
-                            <div id="viewOnlineQuestionModalUser" class="viewUser"></div>
-                            <div id="viewOnlineQuestionModalEmail" class="viewEmail"></div>
-                        </td>
-                        <!-- 加入提問時間 -->
-                        <td id="viewOnlineQuestionModalAskTime" class="viewOnlineQuestionModalAskTime"></td>
-                        <td id="viewOnlineQuestionModalTitle" class="viewQuestionTitle"></td>
-                        <td>
-                            <div id="viewOnlineQuestionModalContent" class="viewQuestionContent">
-                            </div>
-                        </td>
-                        <!-- 加入回覆時間 -->
-                        <td id="viewOnlineQuestionModalReplyTime" class="viewOnlineQuestionModalReplyTime"></td>
-                        <td>
-                            <div id="viewOnlineQuestionModalReply" class="viewOnlineQuestionReply">
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div id="viewOnlineQuestionModal" class="modal">
+            <!-- Modal content -->
+            <span id="viewOnlineQuestionModalClose" class="close">&times;取消</span>
+            <div class="modal-content">
+                <table>
+                    <caption id="viewTitle">
+                        檢視
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td class="td1">分類</td>
+                            <td class="td2">
+                                <div>發問者</div>
+                                <div>E-mail</div>
+                            </td>
+                            <td class="td1">時間</td>
+                            <td class="td4">問題標題</td>
+                            <td class="td5">詳細內容</td>
+                            <td class="td1">時間</td>
+                            <td class="td6">答覆</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="item">
+                            <td id="viewOnlineQuestionModalClassification" class="viewClassification"></td>
+                            <td>
+                                <!-- 加入使用者名稱 -->
+                                <div id="viewOnlineQuestionModalUser" class="viewUser"></div>
+                                <div id="viewOnlineQuestionModalEmail" class="viewEmail"></div>
+                            </td>
+                            <!-- 加入提問時間 -->
+                            <td id="viewOnlineQuestionModalAskTime" class="viewOnlineQuestionModalAskTime"></td>
+                            <td id="viewOnlineQuestionModalTitle" class="viewQuestionTitle"></td>
+                            <td>
+                                <div id="viewOnlineQuestionModalContent" class="viewQuestionContent">
+                                </div>
+                            </td>
+                            <!-- 加入回覆時間 -->
+                            <td id="viewOnlineQuestionModalReplyTime" class="viewOnlineQuestionModalReplyTime"></td>
+                            <td>
+                                <div id="viewOnlineQuestionModalReply" class="viewOnlineQuestionReply">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <!-- view結束-------------------------------------------------------------------- -->
-    <!-- eidt開始-------------------------------------------------------------------- -->
-    <div id="eidtOnlineQuestionModal" class="editmodal">
-        <!-- Modal content -->
-        <span id="eidtOnlineQuestionModalClose" class="close">&times;取消</span>
-        <div class="editmodal-content">
-            <!-- edit-------------------------------------------- -->
-            <table>
-                <caption id="editTitle">
-                    <b>修改問題/回覆</b>
-                </caption>
-                <thead>
-                    <tr>
-                        <td class="td1">分類</td>
-                        <td class="td2">
-                            <div>發問者</div>
-                            <div>E-mail</div>
+        <!-- view結束-------------------------------------------------------------------- -->
+        <!-- eidt開始-------------------------------------------------------------------- -->
+        <div id="eidtOnlineQuestionModal" class="editmodal">
+            <!-- Modal content -->
+            <span id="eidtOnlineQuestionModalClose" class="close">&times;取消</span>
+            <div class="editmodal-content">
+                <!-- edit-------------------------------------------- -->
+                <table>
+                    <caption id="editTitle">
+                        <b>修改問題/回覆</b>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td class="td1">分類</td>
+                            <td class="td2">
+                                <div>發問者</div>
+                                <div>E-mail</div>
+                            </td>
+                            <td class="td1">時間</td>
+                            <td class="td4">問題標題</td>
+                            <td class="td5">詳細內容</td>
+                            <td class="td1">時間</td>
+                            <td class="td6">答覆</td>
+                            <td class="td7">送出</td>
+                            <!-- 增加按鈕 -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td class="th_classify">
+                            <select id="edit_classify" name="classify">
+                                <option value="購買" selected>購買</option>
+                                <option value="租賃">租賃</option>
+                            </select>
                         </td>
-                        <td class="td1">時間</td>
-                        <td class="td4">問題標題</td>
-                        <td class="td5">詳細內容</td>
-                        <td class="td1">時間</td>
-                        <td class="td6">答覆</td>
-                        <td class="td7">送出</td>
-                        <!-- 增加按鈕 -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <td class="th_classify">
-                        <select id="edit_classify" name="classify">
-                            <option value="購買" selected>購買</option>
+                        <td>
+                            <div>
+                                <textarea id="edit_q_name" name="edit_q_name" rows="2" cols="20" maxlength="30"
+                                    placeholder="請輸入姓名"></textarea>
+                            </div>
+                            <div>
+                                <input type="email" id="edit_q_email" name="edit_q_email" size="20" maxlength="50"
+                                    placeholder="請輸入e-mail">
+                            </div>
+                        </td>
+                        <td class="edit_q_time">
+                            <input type="date" name="date" id="edit_q_asking_date">
+                            <input type="time" name="time" id="edit_q_asking_time">
+                        </td>
+                        <td class="edit_q_title">
+                            <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="30"
+                                placeholder="請輸入問題標題(100字以內)" maxlength="100"></textarea>
+                        </td>
+                        <td class="edit_q_content">
+                            <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30"
+                                placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
+                        </td>
+                        <td class="edit_q_time">
+                            <input type="date" name="date" id="edit_q_reply_date">
+                            <input type="time" name="time" id="edit_q_reply_time">
+                        </td>
+                        <td class="edit_q_reply">
+                            <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30"
+                                placeholder="請輸入問題內容(1000字以內" maxlength="1000"></textarea>
+                        </td>
+                        <td><button id="editQuestionButton">確定</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- eidt結束-------------------------------------------------------------------- -->
+        <div id="question">
+            <table id="table">
+                <thead>
+                    <div id="classify">
+                        <span id="tbTitle">線上問答</span>
+                        <select name="classify" id="classificationFilter" onchange="getOnlineQuestions();">
+                            <option value="" selected="true">請選擇分類</option>
+                            <option value="購買">購買</option>
                             <option value="租賃">租賃</option>
                         </select>
-                    </td>
-                    <td>
-                        <div>
-                            <textarea id="edit_q_name" name="edit_q_name" rows="2" cols="20" maxlength="30"
-                                placeholder="請輸入姓名"></textarea>
-                        </div>
-                        <div>
-                            <input type="email" id="edit_q_email" name="edit_q_email" size="20" maxlength="50"
-                                placeholder="請輸入e-mail">
-                        </div>
-                    </td>
-                    <td class="edit_q_time">
-                        <input type="date" name="date" id="edit_q_asking_date">
-                        <input type="time" name="time" id="edit_q_asking_time">
-                    </td>
-                    <td class="edit_q_title">
-                        <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="30" placeholder="請輸入問題標題(100字以內)"
-                            maxlength="100"></textarea>
-                    </td>
-                    <td class="edit_q_content">
-                        <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30"
-                            placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
-                    </td>
-                    <td class="edit_q_time">
-                        <input type="date" name="date" id="edit_q_reply_date">
-                        <input type="time" name="time" id="edit_q_reply_time">
-                    </td>
-                    <td class="edit_q_reply">
-                        <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30" placeholder="請輸入問題內容(1000字以內"
-                            maxlength="1000"></textarea>
-                    </td>
-                    <td><button id="editQuestionButton">確定</button></td>
+                        <span>
+                            <input id="sortByNewest" class="order" type="radio" name=" " value=""
+                                onclick="getOnlineQuestions();">
+                            <label for="new">依最新</label>
+                        </span>
+                        <span>
+                            <input id="sortByOldest" class="order" type="radio" name=" " value=" "
+                                onclick="getOnlineQuestions();">
+                            <label for="old">依最舊</label>
+                        </span>
+                    </div>
+                    <tr>
+                        <th class="td1">分類</th>
+                        <th class="td2">
+                            <div>發問者</div>
+                            <div>E-mail</div>
+                        </th>
+                        <th class="td1">時間</th>
+                        <th class="td4">問題標題</th>
+                        <th class="td5">詳細內容</th>
+                        <th class="td1">時間</th>
+                        <th class="td6">答覆</th>
+                        <th class="td7">管理</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td1">購買</td>
+                        <td class="td2">
+                            <div>Siyue Kao</div>
+                            <div>bloodpinna@gmail.com</div>
+                        </td>
+                        <td class="td3">2021/09/06<br>0930</td>
+                        <td class="td4">商品還有嗎?可以預購嗎?</td>
+                        <td class="td5">
+                            <div class="td5Div">
+                                商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份商品。商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份
+                            </div>
+                        </td>
+                        <td class="td3">2021/09/06<br>1000</td>
+                        <td class="td6">
+                            <div class="td6Div">
+                                親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，預購恕不取消訂單，下單後本島約3個工作天內到貨離島約5-7個工作天。親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，請幫我下單，下單後本島約3個工作天內到貨離島約5-7個工作天，預購下單後恕不取消訂單。
+                            </div>
+                        </td>
+                        <td class="td7">
+                            <div><button>檢視</button></div>
+                            <div><button>刪除</button></div>
+                            <div><button>修改</button></div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-    <!-- eidt結束-------------------------------------------------------------------- -->
-    <div id="question">
-        <table id="table">
-            <thead>
-                <div id="classify">
-                    <span id="tbTitle">線上問答</span>
-                    <select name="classify" id="classificationFilter" onchange="getOnlineQuestions();">
-                        <option value="" selected="true">請選擇分類</option>
-                        <option value="購買">購買</option>
-                        <option value="租賃">租賃</option>
-                    </select>
-                    <span>
-                        <input id="new" class="order" type="radio" name=" " class=" " value=" ">
-                        <label for="new">依最新</label>
-                    </span>
-                    <span>
-                        <input id="old" class="order" type="radio" name=" " class=" " value=" ">
-                        <label for="old">依最舊</label>
-                    </span>
-                </div>
-                <tr>
-                    <th class="td1">分類</th>
-                    <th class="td2">
-                        <div>發問者</div>
-                        <div>E-mail</div>
-                    </th>
-                    <th class="td1">時間</th>
-                    <th class="td4">問題標題</th>
-                    <th class="td5">詳細內容</th>
-                    <th class="td1">時間</th>
-                    <th class="td6">答覆</th>
-                    <th class="td7">管理</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="td1">購買</td>
-                    <td class="td2">
-                        <div>Siyue Kao</div>
-                        <div>bloodpinna@gmail.com</div>
-                    </td>
-                    <td class="td3">2021/09/06<br>0930</td>
-                    <td class="td4">商品還有嗎?可以預購嗎?</td>
-                    <td class="td5">
-                        <div class="td5Div">
-                            商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份商品。商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份
-                        </div>
-                    </td>
-                    <td class="td3">2021/09/06<br>1000</td>
-                    <td class="td6">
-                        <div class="td6Div">
-                            親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，預購恕不取消訂單，下單後本島約3個工作天內到貨離島約5-7個工作天。親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，請幫我下單，下單後本島約3個工作天內到貨離島約5-7個工作天，預購下單後恕不取消訂單。
-                        </div>
-                    </td>
-                    <td class="td7">
-                        <div><button>檢視</button></div>
-                        <div><button>刪除</button></div>
-                        <div><button>修改</button></div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <footer>
-            <!-- <p id="footer"><a href="#">TOP</a></p> -->
-        </footer>
-        <!-- 頁碼開始 -->
-        <div class="page-icon">
-            <span class="page-disabled"><i></i>上一頁</span>
-            <span class="page-current">1</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">7</a>
-            <a href="#">...</a>
-            <a href="#">19</a>
-            <a href="#">20</a>
-            <a class="page-next" href="#">下一頁<i></i></a>
+        <div>
+            <footer>
+                <!-- <p id="footer"><a href="#">TOP</a></p> -->
+            </footer>
+            <!-- 頁碼開始 -->
+            <div class="page-icon">
+                <span class="page-disabled"><i></i>上一頁</span>
+                <span class="page-current">1</span>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+                <a href="#">...</a>
+                <a href="#">19</a>
+                <a href="#">20</a>
+                <a class="page-next" href="#">下一頁<i></i></a>
+            </div>
+
+            <!-- 頁碼結束 -->
         </div>
-        
-        <!-- 頁碼結束 -->
     </div>
-</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
@@ -1122,6 +1138,16 @@
                     var table = document.getElementById("table");
                     var tbody = table.children[1];
                     tbody.innerHTML = "";
+                    var table = document.getElementById("table");
+                    var isSortByNewest = document.getElementById("sortByNewest").checked;
+                    if (isSortByNewest) {
+                        response.data.questions.sort((a, b) => (a.asking_time > b.asking_time) ? 1 : ((b.asking_time > a.asking_time) ? -1 : 0))
+                    }
+                    var isSortByOldest = document.getElementById("sortByOldest").checked;
+                    if (isSortByOldest) {
+                        response.data.questions.sort((a, b) => (a.asking_time > b.asking_time) ? 1 : ((b.asking_time > a.asking_time) ? -1 : 0)).reverse()
+                    }
+
                     for (let question of response.data.questions) {
                         //創建一個tr
                         var tr = document.createElement("tr");
