@@ -695,6 +695,10 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .manageBtn {
+            margin: 3px;
+        }
     </style>
 </head>
 
@@ -1186,6 +1190,7 @@
                         var viewButtonDiv = document.createElement("div")
                         var viewButton = document.createElement("button")
                         viewButton.innerText = "檢視"
+                        viewButton.className = "btn btn-primary manageBtn"
                         viewButtonTd.appendChild(viewButtonDiv)
                         viewButtonDiv.appendChild(viewButton)
                         viewButton.onclick = function () {
@@ -1210,6 +1215,7 @@
                         var deleteButtonDiv = document.createElement("div")
                         var deleteButton = document.createElement("button")
                         deleteButton.innerText = "刪除"
+                        deleteButton.className = "btn btn-primary manageBtn"
                         deleteButton.onclick = function () {
                             console.log(question.id);
                             deleteOnlineQuestions(question.id)
@@ -1219,6 +1225,7 @@
                         var editButtonDiv = document.createElement("div")
                         var editButton = document.createElement("button")
                         editButton.innerText = "編輯"
+                        editButton.className = "btn btn-primary manageBtn"
                         editButton.onclick = function () {
                             eidtOnlineQuestionModal.style.display = "block";
                             let editOnlineQuestionModalClassification = document.getElementById("edit_classify");
