@@ -333,11 +333,11 @@
             overflow: scroll;
         }
 
-        #question {
+        /* #question {
             width: 100vw;
             height: 675px;
             font-size: 27px;
-        }
+        } */
 
         table,
         th,
@@ -382,7 +382,7 @@
 
         .td5Div {
             width: 375px;
-            height: 105px;
+            height: 120px;
             display: block;
             overflow-y: auto;
         }
@@ -393,7 +393,7 @@
 
         .td6Div {
             width: 375px;
-            height: 105px;
+            height: 120px;
             display: block;
             overflow-y: auto;
         }
@@ -430,13 +430,7 @@
         }
 
         /* view */
-        /* -------------------------------------從這開始 */
-
-        #question {
-            width: 100vw;
-            height: 675px;
-            font-size: 27px;
-        }
+        /* -------------------------------------從這開始 */ 
 
         #table {
             margin: 0px 0px 0px 270px;
@@ -699,7 +693,16 @@
         .manageBtn {
             margin: 3px;
         }
+
+        .selectSort {
+            width: 200px;
+            display: inline-block;
+        }
+        label{
+            font-size: 25px;
+        }
     </style>
+
 </head>
 
 <body>
@@ -925,20 +928,19 @@
                 <thead>
                     <div id="classify">
                         <span id="tbTitle">線上問答</span>
-                        <select name="classify" id="classificationFilter" onchange="getOnlineQuestions();">
+                        <select name="classify" id="classificationFilter" class="form-select mb-3 selectSort"
+                            onchange="getOnlineQuestions();">
                             <option value="" selected="true">請選擇分類</option>
                             <option value="購買">購買</option>
                             <option value="租賃">租賃</option>
                         </select>
                         <span>
-                            <input id="sortByNewest" class="order" type="radio" name=" " value=""
+                            <input id="sortByNewest" class="order " type="radio" name=" " value=""
                                 onclick="getOnlineQuestions();">
-                            <label for="new">依最新</label>
-                        </span>
-                        <span>
+                            <label for="sortByNewest">依最新</label>
                             <input id="sortByOldest" class="order" type="radio" name=" " value=" "
                                 onclick="getOnlineQuestions();">
-                            <label for="old">依最舊</label>
+                            <label for="sortByOldest">依最舊</label>
                         </span>
                     </div>
                     <tr>
@@ -1076,7 +1078,7 @@
             // When the user clicks on <span> (x), close the modal
             closeBtn.onclick = function () {
                 eidtOnlineQuestionModal.style.display = "none";
-            }
+            } 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function (event) {
                 if (event.target == eidtOnlineQuestionModal) {

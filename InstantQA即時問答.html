@@ -645,6 +645,10 @@
         #newQuestionTable {
             background-color: white;
         }
+        .manageBtn {
+            margin: 3px;
+        }
+
     </style>
     <script>
 
@@ -872,7 +876,7 @@
                             <option value="購買">購買</option>
                             <option value="租賃">租賃</option>
                         </select>
-                        <span id="add"><button>&ensp;新增&ensp;</button></span>
+                        <span id="add"><button class="btn btn-primary manageBtn">&ensp;新增&ensp;</button></span>
                     </div>
                     <tr>
                         <th class="th1">分類</th>
@@ -1078,6 +1082,7 @@
                         var viewButtonTd = document.createElement("td")
                         var viewButton = document.createElement("button")
                         viewButton.innerText = "檢視"
+                        viewButton.className = "btn btn-primary manageBtn"
                         viewButtonTd.appendChild(viewButton)
                         viewButton.onclick = function () {
                             viewLiveQuestionModal.style.display = "block";
@@ -1095,6 +1100,7 @@
                         var deleteButtonTd = document.createElement("td")
                         var deleteButton = document.createElement("button")
                         deleteButton.innerText = "刪除"
+                        deleteButton.className = "btn btn-primary manageBtn"
                         deleteButton.onclick = function () {
                             console.log(question.id);
                             deleteLiveQuestions(question.id)
@@ -1104,6 +1110,7 @@
                         var editButtonTd = document.createElement("td")
                         var editButton = document.createElement("button")
                         editButton.innerText = "編輯"
+                        editButton.className = "btn btn-primary manageBtn"
                         editButton.onclick = function () {
                             eidtLiveQuestionModal.style.display = "block";
                             let editLiveQuestionModalClassification = document.getElementById("edit_classify");
