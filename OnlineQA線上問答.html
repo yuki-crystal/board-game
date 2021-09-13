@@ -6,7 +6,225 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="sideAndNav.css" />
     <style>
+      /* 頁碼開始 */
+	/*設定div樣式的整體佈局*/
+	.page-icon{
+		margin:20px 0 0 0;/*設定距離頂部20畫素*/
+		font-size:0;/*修復行內元素之間空隙間隔*/
+		text-align:center;/*設定內容居中顯示*/
+	}
+	
+	/*設定共有的的樣式佈局，主要是進行程式碼優化，提高執行效率*/
+	.page-icon a,.page-disabled,.page-next{
+		border:1px solid #ccc;
+		border-radius:3px;
+		padding:4px 10px 5px;
+		font-size:14PX;/*修復行內元素之間空隙間隔*/
+		margin-right:10px;
+	}
+	
+	/*對 a 標籤進行樣式佈局 */
+	.page-icon a{
+		text-decoration:none;/*取消連結的下劃線*/
+		color:#005aa0;
+	}
+	
+	.page-current{
+		color:#ff6600;
+		padding:4px 10px 5px;
+		font-size:14PX;/*修復行內元素之間空隙間隔*/
+	}
+	
+	.page-disabled{
+		color:#ccc;
+	}
+	
+	.page-next i,.page-disabled i{
+		cursor:pointer;/*設定滑鼠經過時的顯示狀態，這裡設定的是顯示狀態為小手狀態*/
+		display:inline-block;/*設定顯示的方式為行內塊元素*/
+		width:5px;
+		height:9px;
+		background-image:url(http://img.mukewang.com/547fdbc60001bab900880700.gif);/*獲取圖示的背景連結*/
+	}
+	.page-disabled i{
+		background-position:-80px -608px;
+		margin-right:3px;
+	}
+
+	.page-next i{
+		background-position:-62px -608px;
+		margin-left:3px;
+	}
+        /* 頁碼結束 */
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Roboto+Mono:wght@500&display=swap");
+
+        /* .bodywith {
+            width: calc(100% - 260px);
+            position: absolute;
+            left: 260px
+        } */
+
+        * {
+            font-family: 'Noto Sans TC', sans-serif, 'Roboto Mono', monospace;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100%;
+            background: #004B97;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .sidebar .sidebarUl {
+            padding: 0;
+        }
+
+        .sidebarTop {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebarTop i {
+            height: 60px;
+            min-width: 78px;
+            font-size: 30px;
+            line-height: 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .sidebarTop .topTitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebarLink {
+            text-decoration: none;
+        }
+
+        .sidebar ul .mainTitle:hover {
+            background: #0352a1;
+        }
+
+
+        .sidebar ul .mainTitle .sidebarList {
+            padding-top: 30px;
+            height: 100%;
+            position: relative;
+            display: flex;
+            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .sidebar ul .mainTitle .sidebarList i {
+            font-size: 24px;
+            color: white;
+            height: 60px;
+            line-height: 40px;
+            margin-right: 10px;
+            font-weight: 300;
+        }
+
+        .sidebar ul li {
+            transition: 0.2s ease;
+        }
+
+        .sidebarLink i {
+            font-size: 18px;
+            height: 60px;
+            min-width: 78px;
+            line-height: 40px;
+            color: white;
+        }
+
+        .sidebarLink .conTitle {
+            font-size: 18px;
+            font-weight: 200;
+            line-height: 40px;
+            color: white;
+        }
+
+        .sidebar ul li .secondList {
+            margin-top: 10px;
+            display: none;
+            padding: 0;
+        }
+
+        .sidebar ul li .secondList li {
+            background: #0072E3;
+            padding: 8px 5px 15px 100px;
+            opacity: 1;
+            transition: .2s;
+        }
+
+        .sidebar ul li .secondList li:hover {
+            font-weight: 800;
+        }
+
+        .sidebar ul li .secondList li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .sidebar ul li.open .secondList {
+            display: block;
+        }
+
+        .sideBottom {
+            position: absolute;
+            bottom: 0;
+            background: #0a4681;
+            width: 100%;
+            display: flex;
+            height: 60px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-radius: 20px;
+        }
+
+        .sideBottom .managerName {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            font-size: 15px;
+            margin-right: 40px;
+        }
+
+        .sideBottom .managerName .session {
+            font-size: 20px;
+            color: rgb(115, 204, 154);
+            font-weight: 600;
+        }
+
+        .sideBottom i {
+            text-align: center;
+            font-size: 24px;
+            color: white;
+            min-width: 78px;
+        }
+
+
         button {
             font-size: 20px;
 
@@ -134,9 +352,9 @@
         }
 
         .td3 {
-            width: 75px;
+            width:100px;
 
-            font-size: 21px;
+            font-size: 18px;
         }
 
         .td4 {
@@ -189,7 +407,7 @@
 
         #footer {
             margin: auto;
-            margin-top: 45px;
+            margin-top: 30px;
             background-color: rgb(203, 226, 255);
             width: 75px;
             height: 45px;
@@ -225,29 +443,32 @@
             margin-bottom: 7.5px;
             background-color: rgba(249, 251, 252, 0.6);
             font-weight: bold;
+            text-align: center;
+            caption-side:top;
         }
 
         .viewClassification {
             text-align: center;
+            width: 70px;
         }
 
         .viewQuestionTitle {
             text-align: left;
-            width: 300px;
-            height: 255px;
+            width: 250px;
+            height: 290px;
             overflow: scroll;
         }
 
         .viewQuestionContent {
             width: 500px;
-            height: 300px;
+            height: 290px;
             text-align: left;
             overflow: scroll;
         }
 
         .viewOnlineQuestionReply {
             width: 500px;
-            height: 300px;
+            height: 290px;
             text-align: left;
             overflow: scroll;
         }
@@ -291,6 +512,8 @@
             margin-bottom: 7.5px;
             background-color: rgba(249, 251, 252, 0.842);
             font-weight: bold;
+            text-align: center;
+            caption-side:top;
         }
 
         .th_add {
@@ -306,7 +529,7 @@
         }
 
         .edit_q_time {
-            font-size: 20px;
+            font-size: 16px;
         }
 
         #edit_q_name {
@@ -322,13 +545,13 @@
         }
 
         #edit_q_title {
-            width: 250px;
+            width: 200px;
             height: 255px;
             font-size: 18px;
         }
 
         #edit_q_content {
-            width: 450px;
+            width: 420px;
             height: 255px;
             text-align: left;
             overflow: scroll;
@@ -336,7 +559,7 @@
         }
 
         #edit_q_reply {
-            width: 450px;
+            width: 420px;
             height: 255px;
             text-align: left;
             overflow: scroll;
@@ -351,10 +574,10 @@
         }
 
 
-        a {
+        /* a {
             text-decoration: none;
             display: block;
-        }
+        } */
 
         /* 未連結 */
         a:link {
@@ -389,11 +612,11 @@
             /* Sit on top */
             padding-top: 50px;
             /* Location of the box */
-            left: 75px;
+            left: 5px;
             top: 120px;
-            width: 1800px;
+            width: 1900px;
             /* Full width */
-            height: 555px;
+            height: 600px;
             /* Full height */
             overflow: scroll;
             /* Enable scroll if needed */
@@ -416,7 +639,7 @@
             top: 120px;
             width: 1900px;
             /* Full width */
-            height: 555px;
+            height: 600px;
             /* Full height */
             overflow: scroll;
             /* Enable scroll if needed */
@@ -432,7 +655,7 @@
             margin: auto;
             padding: 30px;
             border: 1.5px solid #888;
-            width: 1600px;
+            width: 1800px;
         }
 
         .editmodal-content {
@@ -462,252 +685,355 @@
 </head>
 
 <body>
-    <div id="transform">
-        <div id="outer">
-            <div>
-                <h1 id="backstage"><a href="#">後台管理頁面</a></h1>
-                <div id="user">
-
-                    <div id=avatarOuter>
-                        <a href="">
-                            <img id="avatar" src="image/user.png" alt="user">
-                            <span id="userName">高晞月</span>
-                        </a>
-                    </div>
-
-                    <span><a id="changeUser" href=""><u>切換使用者</u></a></span>
-
+    <div class="sidebar">
+        <div class="sidebarTop">
+            <i class="bx bxs-game"></i>
+            <span class="topTitle">tablegame</span>
+        </div>
+        <ul class="sidebarUl">
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-news"></i>
+                        <span class="conTitle">最新消息</span>
+                    </a>
                 </div>
-
-            </div>
-            <div id="sidebarOuter">
-                <div id="sidebar">
-                    <ul>
-                        <li><a href="#">最新消息</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">活動管理▼</a></li>
-                        <li class="hide"><a href="#">比賽</a></li>
-                        <li class="hide"><a href="#">投票</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">租賃相關▼</a></li>
-                        <li class="hide"><a href="#">桌遊</a></li>
-                        <li class="hide"><a href="#">場地</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">產品管理▼</a></ㄠ>
-                        <li class="hide"><a href="#">產品相關</a></li>
-                        <li class="hide"><a href="#">排行</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">討論區</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">客服中心▼</a></li>
-                        <li class="hide"><a href="#">即時問答</a></li>
-                        <li class="hide"><a href="#">線上問答</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">會員管理</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">購物車</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="#">訂單管理</a></li>
-                    </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-command iList"></i>
+                        <span class="conTitle spanList">活動相關</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
                 </div>
+                <ul class="secondList">
+                    <li><a href="">比賽</a></li>
+                    <li><a href="">投票</a></li>
+                </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-store-alt"></i>
+                        <span class="conTitle">租賃管理</span>
+                    </a>
+                </div>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bxl-product-hunt iList"></i>
+                        <span class="conTitle spanList">產品相關</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">產品項目</a></li>
+                    <li><a href="">訂單管理</a></li>
+                </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-message-square"></i>
+                        <span class="conTitle">討論區</span>
+                    </a>
+                </div>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-message-alt-detail iList"></i>
+                        <span class="conTitle spanList">客服中心</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">即時問答</a></li>
+                    <li><a href="">線上問答</a></li>
+                </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-user-circle iList"></i>
+                        <span class="conTitle spanList">會員管理</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">會員資料</a></li>
+                    <li><a href="">消費紀錄</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="sideBottom">
+            <a href="managerLogout.php"><i class='bx bx-log-out'></i></a>
+            <div class="managerName">
+                <span class="session">
+                    <?=$_SESSION["manager"]["admin_nickname"]?>
+                </span>
+                <span>管理員</span>
             </div>
+
         </div>
-        <!-- view開始-------------------------------------------------------------------- -->
-        <div id="viewOnlineQuestionModal" class="modal">
-            <!-- Modal content -->
-            <span id="viewOnlineQuestionModalClose" class="close">&times;取消</span>
-            <div class="modal-content">
-                <table>
-                    <caption id="viewTitle">
-                        檢視
-                    </caption>
-                    <thead>
-                        <tr>
-                            <td class="td1">分類</td>
-                            <td class="td2">
-                                <div>發問者</div>
-                                <div>E-mail</div>
-                            </td>
-                            <td class="td1">時間</td>
-                            <td class="td4">問題標題</td>
-                            <td class="td5">詳細內容</td>
-                            <td class="td1">時間</td>
-                            <td class="td6">答覆</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="item">
-                            <td id="viewOnlineQuestionModalClassification" class="viewClassification"></td>
-                            <td>
-                                <!-- 加入使用者名稱 -->
-                                <div id="viewOnlineQuestionModalUser" class="viewUser"></div>
-                                <div id="viewOnlineQuestionModalEmail" class="viewEmail"></div>
-                            </td>
-                            <!-- 加入提問時間 -->
-                            <td id="viewOnlineQuestionModalAskTime" class="viewOnlineQuestionModalAskTime"></td>
-                            <td id="viewOnlineQuestionModalTitle" class="viewQuestionTitle"></td>
-                            <td>
-                                <div id="viewOnlineQuestionModalContent" class="viewQuestionContent">
-                                </div>
-                            </td>
-                            <!-- 加入回覆時間 -->
-                            <td id="viewOnlineQuestionModalReplyTime" class="viewOnlineQuestionModalReplyTime"></td>
-                            <td>
-                                <div id="viewOnlineQuestionModalReply" class="viewOnlineQuestionReply">
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- view結束-------------------------------------------------------------------- -->
-        <!-- eidt開始-------------------------------------------------------------------- -->
-        <div id="eidtOnlineQuestionModal" class="editmodal">
-            <!-- Modal content -->
-            <span id="eidtOnlineQuestionModalClose" class="close">&times;取消</span>
-            <div class="editmodal-content">
-                <!-- edit-------------------------------------------- -->
-                <table>
-                    <caption id="editTitle">
-                        <b>修改問題/回覆</b>
-                    </caption>
-                    <thead>
-                        <tr>
-                            <td class="td1">分類</td>
-                            <td class="td2">
-                                <div>發問者</div>
-                                <div>E-mail</div>
-                            </td>
-                            <td class="td1">時間</td>
-                            <td class="td4">問題標題</td>
-                            <td class="td5">詳細內容</td>
-                            <td class="td1">時間</td>
-                            <td class="td6">答覆</td>
-                            <td class="td7">送出</td>
-                            <!-- 增加按鈕 -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <td class="th_classify">
-                            <select id="edit_classify" name="classify">
-                                <option value="購買" selected>購買</option>
-                                <option value="租賃">租賃</option>
-                            </select>
-                        </td>
-                        <td>
-                            <div>
-                                <textarea id="edit_q_name" name="edit_q_name" rows="2" cols="20" maxlength="30"
-                                    placeholder="請輸入姓名"></textarea>
-                            </div>
-                            <div>
-                                <input type="email" id="edit_q_email" name="edit_q_email" size="20" maxlength="50"
-                                    placeholder="請輸入e-mail">
-                            </div>
-                        </td>
-                        <td class="edit_q_time">
-                            <input type="date" name="date" id="edit_q_asking_date">
-                            <input type="time" name="time" id="edit_q_asking_time">
-                        </td>
-                        <td class="edit_q_title">
-                            <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="30"
-                                placeholder="請輸入問題標題(100字以內)" maxlength="100"></textarea>
-                        </td>
-                        <td class="edit_q_time">
-                            <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30"
-                                placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
-                        </td>
-                        <td class="edit_q_time">
-                            <input type="date" name="date" id="edit_q_reply_date">
-                            <input type="time" name="time" id="edit_q_reply_time">
-                        </td>
-                        <td class="edit_q_reply">
-                            <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30"
-                                placeholder="請輸入問題內容(1000字以內" maxlength="1000"></textarea>
-                        </td>
-                        <td><button id="editQuestionButton">確定</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- eidt結束-------------------------------------------------------------------- -->
-        <div id="question">
-            <table id="table">
+    </div>
+
+    <!-- view開始-------------------------------------------------------------------- -->
+    <div id="bodywith">
+    <div id="viewOnlineQuestionModal" class="modal">
+        <!-- Modal content -->
+        <span id="viewOnlineQuestionModalClose" class="close">&times;取消</span>
+        <div class="modal-content">
+            <table>
+                <caption id="viewTitle">
+                    檢視
+                </caption>
                 <thead>
-                    <div id="classify">
-                        <span id="tbTitle">線上問答</span>
-                        <select name="classify" id="classificationFilter" onchange="getOnlineQuestions();">
-                            <option value="" selected="true">請選擇分類</option>
-                            <option value="購買">購買</option>
-                            <option value="租賃">租賃</option>
-                        </select>
-                        <span>
-                            <input id="new" class="order" type="radio" name=" " class=" " value=" ">
-                            <label for="new">依最新</label>
-                        </span>
-                        <span>
-                            <input id="old" class="order" type="radio" name=" " class=" " value=" ">
-                            <label for="old">依最舊</label>
-                        </span>
-                    </div>
                     <tr>
-                        <th class="td1">分類</th>
-                        <th class="td2">
+                        <td class="td1">分類</td>
+                        <td class="td2">
                             <div>發問者</div>
                             <div>E-mail</div>
-                        </th>
-                        <th class="td1">時間</th>
-                        <th class="td4">問題標題</th>
-                        <th class="td5">詳細內容</th>
-                        <th class="td1">時間</th>
-                        <th class="td6">答覆</th>
-                        <th class="td7">管理</th>
+                        </td>
+                        <td class="td1">時間</td>
+                        <td class="td4">問題標題</td>
+                        <td class="td5">詳細內容</td>
+                        <td class="td1">時間</td>
+                        <td class="td6">答覆</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="td1">購買</td>
-                        <td class="td2">
-                            <div>Siyue Kao</div>
-                            <div>bloodpinna@gmail.com</div>
+                    <tr id="item">
+                        <td id="viewOnlineQuestionModalClassification" class="viewClassification"></td>
+                        <td>
+                            <!-- 加入使用者名稱 -->
+                            <div id="viewOnlineQuestionModalUser" class="viewUser"></div>
+                            <div id="viewOnlineQuestionModalEmail" class="viewEmail"></div>
                         </td>
-                        <td class="td3">2021/09/06<br>0930</td>
-                        <td class="td4">商品還有嗎?可以預購嗎?</td>
-                        <td class="td5">
-                            <div class="td5Div">
-                                商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份商品。商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份
+                        <!-- 加入提問時間 -->
+                        <td id="viewOnlineQuestionModalAskTime" class="viewOnlineQuestionModalAskTime"></td>
+                        <td id="viewOnlineQuestionModalTitle" class="viewQuestionTitle"></td>
+                        <td>
+                            <div id="viewOnlineQuestionModalContent" class="viewQuestionContent">
                             </div>
                         </td>
-                        <td class="td3">2021/09/06<br>1000</td>
-                        <td class="td6">
-                            <div class="td6Div">
-                                親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，預購恕不取消訂單，下單後本島約3個工作天內到貨離島約5-7個工作天。親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，請幫我下單，下單後本島約3個工作天內到貨離島約5-7個工作天，預購下單後恕不取消訂單。
+                        <!-- 加入回覆時間 -->
+                        <td id="viewOnlineQuestionModalReplyTime" class="viewOnlineQuestionModalReplyTime"></td>
+                        <td>
+                            <div id="viewOnlineQuestionModalReply" class="viewOnlineQuestionReply">
                             </div>
-                        </td>
-                        <td class="td7">
-                            <div><button>檢視</button></div>
-                            <div><button>刪除</button></div>
-                            <div><button>修改</button></div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div>
-            <footer>
-                <p id="footer"><a href="#">TOP</a></p>
-            </footer>
+    </div>
+    <!-- view結束-------------------------------------------------------------------- -->
+    <!-- eidt開始-------------------------------------------------------------------- -->
+    <div id="eidtOnlineQuestionModal" class="editmodal">
+        <!-- Modal content -->
+        <span id="eidtOnlineQuestionModalClose" class="close">&times;取消</span>
+        <div class="editmodal-content">
+            <!-- edit-------------------------------------------- -->
+            <table>
+                <caption id="editTitle">
+                    <b>修改問題/回覆</b>
+                </caption>
+                <thead>
+                    <tr>
+                        <td class="td1">分類</td>
+                        <td class="td2">
+                            <div>發問者</div>
+                            <div>E-mail</div>
+                        </td>
+                        <td class="td1">時間</td>
+                        <td class="td4">問題標題</td>
+                        <td class="td5">詳細內容</td>
+                        <td class="td1">時間</td>
+                        <td class="td6">答覆</td>
+                        <td class="td7">送出</td>
+                        <!-- 增加按鈕 -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <td class="th_classify">
+                        <select id="edit_classify" name="classify">
+                            <option value="購買" selected>購買</option>
+                            <option value="租賃">租賃</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div>
+                            <textarea id="edit_q_name" name="edit_q_name" rows="2" cols="20" maxlength="30"
+                                placeholder="請輸入姓名"></textarea>
+                        </div>
+                        <div>
+                            <input type="email" id="edit_q_email" name="edit_q_email" size="20" maxlength="50"
+                                placeholder="請輸入e-mail">
+                        </div>
+                    </td>
+                    <td class="edit_q_time">
+                        <input type="date" name="date" id="edit_q_asking_date">
+                        <input type="time" name="time" id="edit_q_asking_time">
+                    </td>
+                    <td class="edit_q_title">
+                        <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="30" placeholder="請輸入問題標題(100字以內)"
+                            maxlength="100"></textarea>
+                    </td>
+                    <td class="edit_q_content">
+                        <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30"
+                            placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
+                    </td>
+                    <td class="edit_q_time">
+                        <input type="date" name="date" id="edit_q_reply_date">
+                        <input type="time" name="time" id="edit_q_reply_time">
+                    </td>
+                    <td class="edit_q_reply">
+                        <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30" placeholder="請輸入問題內容(1000字以內"
+                            maxlength="1000"></textarea>
+                    </td>
+                    <td><button id="editQuestionButton">確定</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+    <!-- eidt結束-------------------------------------------------------------------- -->
+    <div id="question">
+        <table id="table">
+            <thead>
+                <div id="classify">
+                    <span id="tbTitle">線上問答</span>
+                    <select name="classify" id="classificationFilter" onchange="getOnlineQuestions();">
+                        <option value="" selected="true">請選擇分類</option>
+                        <option value="購買">購買</option>
+                        <option value="租賃">租賃</option>
+                    </select>
+                    <span>
+                        <input id="new" class="order" type="radio" name=" " class=" " value=" ">
+                        <label for="new">依最新</label>
+                    </span>
+                    <span>
+                        <input id="old" class="order" type="radio" name=" " class=" " value=" ">
+                        <label for="old">依最舊</label>
+                    </span>
+                </div>
+                <tr>
+                    <th class="td1">分類</th>
+                    <th class="td2">
+                        <div>發問者</div>
+                        <div>E-mail</div>
+                    </th>
+                    <th class="td1">時間</th>
+                    <th class="td4">問題標題</th>
+                    <th class="td5">詳細內容</th>
+                    <th class="td1">時間</th>
+                    <th class="td6">答覆</th>
+                    <th class="td7">管理</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="td1">購買</td>
+                    <td class="td2">
+                        <div>Siyue Kao</div>
+                        <div>bloodpinna@gmail.com</div>
+                    </td>
+                    <td class="td3">2021/09/06<br>0930</td>
+                    <td class="td4">商品還有嗎?可以預購嗎?</td>
+                    <td class="td5">
+                        <div class="td5Div">
+                            商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份商品。商品顯示無庫存，請問何時會進貨?可以預購嗎?預購後多久可以拿到?我需要Dixit兩份
+                        </div>
+                    </td>
+                    <td class="td3">2021/09/06<br>1000</td>
+                    <td class="td6">
+                        <div class="td6Div">
+                            親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，預購恕不取消訂單，下單後本島約3個工作天內到貨離島約5-7個工作天。親愛的顧客您好~我們會定時補貨，如果您確定要該項商品，這裡可幫您進貨，請幫我下單，下單後本島約3個工作天內到貨離島約5-7個工作天，預購下單後恕不取消訂單。
+                        </div>
+                    </td>
+                    <td class="td7">
+                        <div><button>檢視</button></div>
+                        <div><button>刪除</button></div>
+                        <div><button>修改</button></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <footer>
+            <!-- <p id="footer"><a href="#">TOP</a></p> -->
+        </footer>
+        <!-- 頁碼開始 -->
+        <div class="page-icon">
+            <span class="page-disabled"><i></i>上一頁</span>
+            <span class="page-current">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <a href="#">...</a>
+            <a href="#">19</a>
+            <a href="#">20</a>
+            <a class="page-next" href="#">下一頁<i></i></a>
+        </div>
+        
+        <!-- 頁碼結束 -->
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        let sidebarList = document.querySelectorAll(".sidebarList");
+        let secondList = document.querySelectorAll(".secondList");
+        let iList = document.querySelectorAll(".iList");
+        let spanList = document.querySelectorAll(".spanList");
+
+        for (let i = 0; i < arrow.length; i++) {
+            //   check[i].on("click", function () {
+            //   $(".secondList").toggleClass("close");
+            // });
+            arrow[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement.parentElement;
+                // secondList.classList.toggle("close");
+                // console.log(join);
+                join.classList.toggle("open");
+            })
+        }
+
+        for (let i = 0; i < sidebarList.length; i++) {
+            sidebarList[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement;
+                // console.log(one);
+                join.classList.toggle("open");
+            })
+        }
+
+        for (let i = 0; i < iList.length; i++) {
+            iList[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement.parentElement.parentElement;
+                // console.log(one);
+                join.classList.toggle("open");
+            })
+        }
+
+        for (let i = 0; i < spanList.length; i++) {
+            spanList[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement.parentElement.parentElement;
+                // console.log(one);
+                join.classList.toggle("open");
+            })
+        }
+
+
+    </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         function setUpModal() {
@@ -922,6 +1248,8 @@
         setUpModal();
         setUpUpdateQuestionButton();
         getOnlineQuestions();
+
+
 
     </script>
 </body>

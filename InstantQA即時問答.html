@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="sideAndNav.css" />
+    <style>
+         /* 頁碼開始 */  
+	/*設定div樣式的整體佈局*/
+	.page-icon{
+		margin:20px 0 0 0;/*設定距離頂部20畫素*/
+		font-size:0;/*修復行內元素之間空隙間隔*/
+		text-align:center;/*設定內容居中顯示*/
+	}
+	
+	/*設定共有的的樣式佈局，主要是進行程式碼優化，提高執行效率*/
+	.page-icon a,.page-disabled,.page-next{
+		border:1px solid #ccc;
+		border-radius:3px;
+		padding:4px 10px 5px;
+		font-size:14PX;/*修復行內元素之間空隙間隔*/
+		margin-right:10px;
+	}
+	
+	/*對 a 標籤進行樣式佈局 */
+	.page-icon a{
+		text-decoration:none;/*取消連結的下劃線*/
+		color:#005aa0;
+	}
+	
+	.page-current{
+		color:#ff6600;
+		padding:4px 10px 5px;
+		font-size:14PX;/*修復行內元素之間空隙間隔*/
+	}
+	
+	.page-disabled{
+		color:#ccc;
+	}
+	
+	.page-next i,.page-disabled i{
+		cursor:pointer;/*設定滑鼠經過時的顯示狀態，這裡設定的是顯示狀態為小手狀態*/
+		display:inline-block;/*設定顯示的方式為行內塊元素*/
+		width:5px;
+		height:9px;
+		background-image:url(http://img.mukewang.com/547fdbc60001bab900880700.gif);/*獲取圖示的背景連結*/
+	}
+	.page-disabled i{
+		background-position:-80px -608px;
+		margin-right:3px;
+	}
+
+	.page-next i{
+		background-position:-62px -608px;
+		margin-left:3px;
+	}
+        /* 頁碼結束 */
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Roboto+Mono:wght@500&display=swap");
+
+        /* .bodywith {
+            width: calc(100% - 260px);
+            position: absolute;
+            left: 260px
+        } */
+
+        * {
+            font-family: 'Noto Sans TC', sans-serif, 'Roboto Mono', monospace;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100%;
+            background: #004B97;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .sidebar .sidebarUl {
+            padding: 0;
+        }
+
+        .sidebarTop {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebarTop i {
+            height: 60px;
+            min-width: 78px;
+            font-size: 30px;
+            line-height: 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .sidebarTop .topTitle {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebarLink {
+            text-decoration: none;
+        }
+
+        .sidebar ul .mainTitle:hover {
+            background: #0352a1;
+        }
+
+
+        .sidebar ul .mainTitle .sidebarList {
+            padding-top: 30px;
+            height: 100%;
+            position: relative;
+            display: flex;
+            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .sidebar ul .mainTitle .sidebarList i {
+            font-size: 24px;
+            color: white;
+            height: 60px;
+            line-height: 40px;
+            margin-right: 10px;
+            font-weight: 300;
+        }
+
+        .sidebar ul li {
+            transition: 0.2s ease;
+        }
+
+        .sidebarLink i {
+            font-size: 18px;
+            height: 60px;
+            min-width: 78px;
+            line-height: 40px;
+            color: white;
+        }
+
+        .sidebarLink .conTitle {
+            font-size: 18px;
+            font-weight: 200;
+            line-height: 40px;
+            color: white;
+        }
+
+        .sidebar ul li .secondList {
+            margin-top: 10px;
+            display: none;
+            padding: 0;
+        }
+
+        .sidebar ul li .secondList li {
+            background: #0072E3;
+            padding: 8px 5px 15px 100px;
+            opacity: 1;
+            transition: .2s;
+        }
+
+        .sidebar ul li .secondList li:hover {
+            font-weight: 800;
+        }
+
+        .sidebar ul li .secondList li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .sidebar ul li.open .secondList {
+            display: block;
+        }
+
+        .sideBottom {
+            position: absolute;
+            bottom: 0;
+            background: #0a4681;
+            width: 100%;
+            display: flex;
+            height: 60px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-radius: 20px;
+        }
+
+        .sideBottom .managerName {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            font-size: 15px;
+            margin-right: 40px;
+        }
+
+        .sideBottom .managerName .session {
+            font-size: 20px;
+            color: rgb(115, 204, 154);
+            font-weight: 600;
+        }
+
+        .sideBottom i {
+            text-align: center;
+            font-size: 24px;
+            color: white;
+            min-width: 78px;
+        }
+
+        td {
+            height: 37.5px;
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 20px;
+        }
+
+        #outer {
+            margin-left: 45px;
+        }
+
+        #backstage {
+            width: 405px;
+            height: 75px;
+            border: 1.5px solid black;
+            font-size: 45px;
+            letter-spacing: 3px;
+            text-align: center;
+            display: inline-block;
+            padding-top: 6px;
+        }
+
+        #user {
+            float: right;
+            margin-right: 120px;
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+
+        #userName {
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+            top: -15px;
+        }
+
+        #avatar {
+            margin-top: 7.5px;
+            margin-left: 22.5px;
+            height: 60px;
+        }
+
+        #avatarOuter {
+            margin-top: 22.5px;
+            border-radius: 75px;
+            background-color: #f1f2f3;
+            width: 225px;
+        }
+
+        #changeUser {
+            display: block;
+            margin-left: 45px;
+            margin-top: -3px;
+            font-size: 21px;
+            color: #1876f2;
+
+        }
+
+        #sidebar {
+            list-style-type: none;
+            background-color: #E4E6EB;
+            text-align: center;
+            margin: auto;
+            font-size: 30px;
+            line-height: 3em;
+            float: left;
+            top: 150%;
+            width: 150%;
+
+
+        }
+
+        #sidebarOuter {
+            float: left;
+            background-color: rgb(130, 248, 223);
+            width: 195px;
+            height: 525px;
+            display: inline-flex
+        }
+
+        #sidebar ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+
+        #question {
+            width: 100vw;
+            height: 675px;
+            font-size: 27px;
+        }
+
+        #table {
+            margin: 0px 0px 0px 270px;
+            text-align: center;
+            overflow: scroll;
+        }
+
+        #classify {
+            margin: 15px 270px;
+        }
+
+        #tbTitle {
+            font-size: 45px;
+
+        }
+
+        #add {
+            float: right;
+            background-color: #E4E6EB;
+            font-size: 30px;
+            margin-top: 22.5px;
+            margin-right: -83px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1.5px solid black;
+            margin: 0px;
+            border-collapse: collapse;
+            overflow: hidden;
+
+        }
+
+        th {
+            font-size: 24px;
+            height: 37.5px;
+            text-align: center;
+        }
+
+        .th1 {
+            width: 75px;
+
+        }
+
+        .th2 {
+            width: 180px;
+
+        }
+
+        .th3 {
+            width: 480px;
+
+        }
+
+        .td3Div {
+            width: 525px;
+            height: 150px;
+            display: block;
+            overflow-y: auto;
+        }
+
+        .th4 {
+            width: 525px;
+
+        }
+
+        .td4Div {
+            width: 525px;
+            height: 150px;
+            display: block;
+            overflow-y: auto;
+        }
+
+        .th5 {
+            width: 225px;
+
+        }
+
+        .viewClassification {
+            text-align: center;
+        }
+
+        .viewQuestionTitle {
+            text-align: left;
+            width: 270px;
+            height: 255px;
+            overflow: scroll;
+        }
+
+        .viewQuestionContent {
+            width: 570px;
+            height: 300px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        .viewLiveQuestionReply {
+            width: 570px;
+            height: 300px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        .td-scrollable {
+            width: 555px;
+            height: 120px;
+            display: block;
+            overflow: auto;
+            text-align: left;
+
+        }
+
+        .questionTitle-scrollable {
+            width: 180px;
+            height: 120px;
+            display: block;
+            overflow: auto;
+            text-align: left;
+
+        }
+
+        #classificationFilter {
+            font-size: 24px;
+            text-align: center;
+            margin-left: 90px;
+            margin-right: 75px;
+            height: 45px
+        }
+
+        #footer {
+            margin: auto;
+            margin-top: 30px;
+            background-color: rgb(203, 226, 255);
+            width: 75px;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+        }
+
+        #editTitle {
+            font-size: 33px;
+            margin-bottom: 7.5px;
+            background-color: rgba(249, 251, 252, 0.842);
+            font-weight: bold;
+            text-align: center;
+            caption-side:top;
+        }
+
+        .th_classify {
+            width: 135px;
+            font-weight: bold;
+            text-align: center;
+
+        }
+
+        .th_q_title {
+            width: 270px;
+            font-weight: bold;
+            text-align: center;
+
+        }
+
+        .th_content {
+            width: 525px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .th_reply {
+            width: 525px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .th_add {
+            width: 105px;
+            font-weight: bold;
+            text-align: center;
+
+        }
+
+
+
+        #td_q_title {
+            width: 270px;
+            height: 255px;
+        }
+
+        #td_q_content {
+            width: 525px;
+            height: 255px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        #td_q_reply {
+            width: 525px;
+            height: 255px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        #createQuestionButton {
+            position: relative;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        #viewTitle {
+            font-size: 33px;
+            margin-bottom: 5px;
+            background-color: rgba(249, 251, 252, 0.6);
+            font-weight: bold;
+            text-align: center;
+            caption-side:top;
+        }
+
+        #edit_q_title {
+            width: 270px;
+            height: 255px;
+        }
+
+        #edit_q_content {
+            width: 525px;
+            height: 255px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        #edit_q_reply {
+            width: 525px;
+            height: 255px;
+            text-align: left;
+            overflow: scroll;
+        }
+
+        #editQuestionButton {
+            position: relative;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+
+        a {
+            text-decoration: none;
+            /* display: block; */
+        }
+
+        /* 未連結 */
+        a:link {
+            color: -webkit-link;
+        }
+
+        /* 已連結過 */
+        a:visited {
+            color: -webkit-link;
+        }
+
+        /* 滑鼠移至連結 */
+        a:hover {
+            color: #26b0f0;
+        }
+
+        /* 選擇的連結 */
+        a:active {
+            color: #0061b1;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 75px;
+            /* Location of the box */
+            left: 75px;
+            top:120px;
+            width: 1800px;
+            /* Full width */
+            height: 550px;
+            /* Full height */
+            overflow: scroll;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 1575px;
+            top: -30px;;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: -70px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #newQuestionTable {
+            background-color: white;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebarTop">
+            <i class="bx bxs-game"></i>
+            <span class="topTitle">tablegame</span>
+        </div>
+        <ul class="sidebarUl">
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-news"></i>
+                        <span class="conTitle">最新消息</span>
+                    </a>
+                </div>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-command iList"></i>
+                        <span class="conTitle spanList">活動相關</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">比賽</a></li>
+                    <li><a href="">投票</a></li>
+                </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-store-alt"></i>
+                        <span class="conTitle">租賃管理</span>
+                    </a>
+                </div>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bxl-product-hunt iList"></i>
+                        <span class="conTitle spanList">產品相關</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">產品項目</a></li>
+                    <li><a href="">訂單管理</a></li>
+                </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-message-square"></i>
+                        <span class="conTitle">討論區</span>
+                    </a>
+                </div>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-message-alt-detail iList"></i>
+                        <span class="conTitle spanList">客服中心</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">即時問答</a></li>
+                    <li><a href="">線上問答</a></li>
+                </ul>
+            </li>
+            <li class="mainTitle">
+                <div class="sidebarList">
+                    <a href="#" class="sidebarLink">
+                        <i class="bx bx-user-circle iList"></i>
+                        <span class="conTitle spanList">會員管理</span>
+                    </a>
+                    <i class="bx bx-chevron-down arrow"></i>
+                </div>
+                <ul class="secondList">
+                    <li><a href="">會員資料</a></li>
+                    <li><a href="">消費紀錄</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="sideBottom">
+            <a href="managerLogout.php"><i class='bx bx-log-out'></i></a>
+            <div class="managerName">
+                <span class="session">
+                    <?=$_SESSION["manager"]["admin_nickname"]?>
+                </span>
+                <span>管理員</span>
+            </div>
+        </div>
+    </div>
+    <div class="bodywith">
+        <div id="newLiveQuestionModal" class="modal">
+            <!-- Modal content -->
+            <span id="newLiveQuestionModalClose" class="close">&times;取消</span>
+            <div class="modal-content">
+                <table id="newQuestionTable">
+                    <caption id="title"><b>新增問題和回覆<b></caption>
+
+                    <tbody>
+                        <tr>
+                            <th class="th_classify">分類</th>
+                            <th class="th_q_title">問題</th>
+                            <th class="th_content">詳細內容</th>
+                            <th class="th_reply">答覆</th>
+                            <th class="th_add">新增</th>
+                        </tr>
+                        <td class="th_classify">
+                            <select id="td_classify">
+                                <option value="購買">購買</option>
+                                <option value="租賃">租賃</option>
+                            </select>
+                        </td>
+                        <td class="td_q_title">
+                            <textarea id="td_q_title" name="td_q_title" rows="5" cols="14" placeholder="請輸入問題標題(100字以內)"
+                                maxlength="100"></textarea>
+                        </td>
+                        <td class="td_q_content">
+                            <textarea id="td_q_content" name="td_q_content" rows="5" cols="30"
+                                placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
+                        </td>
+                        <td class="td_q_reply">
+                            <textarea id="td_q_reply" name="td_q_reply" rows="5" cols="30"
+                                placeholder="請輸入問題內容(1000字以內)" maxlength="1000"></textarea>
+                        </td>
+                        <td><button id="createQuestionButton">送出</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="viewLiveQuestionModal" class="modal">
+            <!-- Modal content -->
+            <span id="viewLiveQuestionModalClose" class="close">&times;取消</span>
+            <div class="modal-content">
+                <table>
+                    <caption id="viewTitle">
+                        檢視
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th class="th1">分類</th>
+                            <th class="th2">問題</th>
+                            <th class="th3">詳細內容</th>
+                            <th class="th4">答覆</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="item">
+                            <td id="viewLiveQuestionModalClassification" class="viewClassification"></td>
+                            <td>
+                                <div id="viewLiveQuestionModalTitle" class="viewQuestionTitle">
+                                </div>
+                            </td>
+                            <td>
+                                <div id="viewLiveQuestionModalContent" class="viewQuestionContent">
+                                </div>
+                            </td>
+                            <td>
+                                <div id="viewLiveQuestionModalReply" class="viewLiveQuestionReply">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="eidtLiveQuestionModal" class="modal">
+            <!-- Modal content -->
+            <span id="eidtLiveQuestionModalClose" class="close">&times;取消</span>
+            <div class="modal-content">
+                <!-- edit-------------------------------------------- -->
+                <table id="editTable">
+                    <caption id="editTitle"><b>修改問答</b><b></caption>
+
+                    <tbody>
+                        <tr>
+                            <th class="th_classify">分類</th>
+                            <th class="th_q_title">問題</th>
+                            <th class="th_content">詳細內容</th>
+                            <th class="th_reply">答覆</th>
+                            <th class="th_add">修改</th>
+                        </tr>
+                        <td class="th_classify">
+                            <select id="edit_classify">
+                                <option value="購買">購買</option>
+                                <option value="租賃">租賃</option>
+                            </select>
+                        </td>
+                        <td class="edit_q_title">
+                            <textarea id="edit_q_title" name="edit_q_title" rows="5" cols="14"
+                                placeholder="請輸入問題標題(100字以內)" maxlength="100"></textarea>
+                        </td>
+                        <td class="edit_q_content">
+                            <textarea id="edit_q_content" name="edit_q_content" rows="5" cols="30" maxlength="1000"
+                                placeholder="請輸入問題內容(1000字以內)"></textarea>
+                        </td>
+                        <td class="edit_q_reply">
+                            <textarea id="edit_q_reply" name="edit_q_reply" rows="5" cols="30" maxlength="1000"
+                                placeholder="請輸入問題內容(1000字以內)"></textarea>
+                        </td>
+                        <td><button id="editQuestionButton">確定</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="question">
+            <table id="table">
+                <thead>
+                    <div id="classify">
+                        <span id="tbTitle">即時問答</span>
+                        <select name="classify" id="classificationFilter" onchange="getLiveQuestions();">
+                            <option value="" selected="true">請選擇分類</option>
+                            <option value="購買">購買</option>
+                            <option value="租賃">租賃</option>
+                        </select>
+                        <span id="add"><button>&ensp;新增&ensp;</button></span>
+                    </div>
+                    <tr>
+                        <th class="th1">分類</th>
+                        <th class="th2">問題</th>
+                        <th class="th3">詳細內容</th>
+                        <th class="th4">答覆</th>
+                        <th class="th5" colspan="3">管理</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="item">
+                        <td>租賃</td>
+                        <td>延長租賃時間</td>
+                        <td>
+                            <div class="td3Div">
+                                我想延長Among Us租賃時間3天，請問可否協助延長?如果延長租賃時間，費用如何計算呢?
+                            </div>
+                        </td>
+                        <td>
+                            <div class="td4Div">
+                                親愛的客戶您好~這邊檢視您租賃的1組Among Us由9/3 15:00-9/6
+                                15:00，下個時段無預租，可延長3天租賃時間，租賃費用為NT$50/日，請至商品租賃頁面下單:https://www.goodboardgame.com/store。
+                            </div>
+                        </td>
+                        <td><button>檢視</button></td>
+                        <td><button>編輯</button></td>
+                        <td><button>刪除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer>
+            <!-- <p id="footer"><a href="#">TOP</a></p> -->
+        </footer>
+                <!-- 頁碼開始 -->
+                <div class="page-icon">
+                    <span class="page-disabled"><i></i>上一頁</span>
+                    <span class="page-current">1</span>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">7</a>
+                    <a href="#">...</a>
+                    <a href="#">19</a>
+                    <a href="#">20</a>
+                    <a class="page-next" href="#">下一頁<i></i></a>
+                </div>
+                
+                <!-- 頁碼結束 -->
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function setUpModal() {
+            let newLiveQuestionModal = document.getElementById("newLiveQuestionModal");
+            // Get the button that opens the modal
+            let btn = document.getElementById("add");
+            // Get the <span> element that closes the modal
+            let closeBtn = document.getElementById("newLiveQuestionModalClose");
+            // When the user clicks the button, open the modal 
+            btn.onclick = function () {
+                newLiveQuestionModal.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function () {
+                newLiveQuestionModal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == newLiveQuestionModal) {
+                    newLiveQuestionModal.style.display = "none";
+                }
+            }
+
+            let viewLiveQuestionModal = document.getElementById("viewLiveQuestionModal");
+            // Get the <span> element that closes the modal
+            closeBtn = document.getElementById("viewLiveQuestionModalClose");
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function () {
+                viewLiveQuestionModal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == viewLiveQuestionModal) {
+                    viewLiveQuestionModal.style.display = "none";
+                }
+            }
+            let eidtLiveQuestionModal = document.getElementById("eidtLiveQuestionModal");
+            // Get the <span> element that closes the modal
+            closeBtn = document.getElementById("eidtLiveQuestionModalClose");
+            // When the user clicks on <span> (x), close the modal
+            closeBtn.onclick = function () {
+                eidtLiveQuestionModal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == eidtLiveQuestionModal) {
+                    eidtLiveQuestionModal.style.display = "none";
+                }
+            }
+
+
+        }
+        function postLiveQuestion(classification, title, content, reply) {
+            const axios = window.axios;
+            const requestBody = {
+                classification, title, content, reply
+            }
+            axios.post('http://localhost/api/live_questions.php', requestBody).then(function (response) { getLiveQuestions() })
+        }
+        function putLiveQuestion(id, classification, title, content, reply) {
+            const axios = window.axios;
+            const requestBody = {
+                id, classification, title, content, reply
+            }
+            axios.put('http://localhost/api/live_questions.php', requestBody).then(function (response) { getLiveQuestions() })
+        }
+        function setUpCreateNewQuestionButton() {
+            let createQuestionButton = document.getElementById("createQuestionButton");
+            createQuestionButton.onclick = function () {
+                // TODO: check all filed were filled
+                postLiveQuestion(
+                    document.getElementById("td_classify").value,
+                    document.getElementById("td_q_title").value,
+                    document.getElementById("td_q_content").value,
+                    document.getElementById("td_q_reply").value,
+                )
+
+                let modal = document.getElementById("newLiveQuestionModal");
+                modal.style.display = "none";
+                // clear input field
+                let newLiveQuestionModalClassification = document.getElementById("td_classify");
+                newLiveQuestionModalClassification.value = "購買"
+                let newLiveQuestionModalTitle = document.getElementById("td_q_title");
+                newLiveQuestionModalTitle.value = ""
+                let newLiveQuestionModalContent = document.getElementById("td_q_content");
+                newLiveQuestionModalContent.value = ""
+                let newLiveQuestionModalReply = document.getElementById("td_q_reply");
+                newLiveQuestionModalReply.value = ""
+            }
+        }
+        function setUpUpdateQuestionButton() {
+            let editQuestionButton = document.getElementById("editQuestionButton");
+            editQuestionButton.onclick = function () {
+                // TODO: check all filed were filled
+                putLiveQuestion(
+                    currentLiveQuestionId,
+                    document.getElementById("edit_classify").value,
+                    document.getElementById("edit_q_title").value,
+                    document.getElementById("edit_q_content").value,
+                    document.getElementById("edit_q_reply").value,
+                )
+
+                let modal = document.getElementById("eidtLiveQuestionModal");
+                modal.style.display = "none";
+
+            }
+        }
+        function deleteLiveQuestions(id) {
+            const axios = window.axios;
+            axios.delete('http://localhost/api/live_questions.php', { data: { id } }).then(function (response) { getLiveQuestions(); })
+        }
+        function getLiveQuestions() {
+            const axios = window.axios;
+            let requestParameters = {
+                params: {
+                }
+            }
+            const classificationFilterValue = document.getElementById("classificationFilter").value
+            if (classificationFilterValue !== "") {
+                requestParameters.params.classification = classificationFilterValue
+            }
+            axios.get('http://localhost/api/live_questions.php', requestParameters)
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                    console.log(response.status);
+                    var table = document.getElementById("table");
+                    var tbody = table.children[1];
+                    tbody.innerHTML = "";
+                    for (let question of response.data.live_questions) {
+                        //創建一個tr
+                        var tr = document.createElement("tr");
+                        //創建四個td
+
+                        var classificationTd = document.createElement("td")
+                        //classificationTd.innerHTML = `<div class="shown" id="classification${question.id}Text">${question.classification}</div>`
+                        classificationTd.innerText = question.classification
+                        var questionTd = document.createElement("td")
+                        var questionDiv = document.createElement("div")
+                        questionDiv.className = "questionTitle-scrollable"
+                        questionDiv.innerText = question.title
+                        //questionTd.className = "td-scrollable"
+                        var contentTd = document.createElement("td")
+                        var contentTdDiv = document.createElement("div")
+                        contentTdDiv.className = "td-scrollable"
+                        contentTdDiv.innerText = question.content
+                        var replyTd = document.createElement("td")
+                        var replyTdDiv = document.createElement("div")
+                        replyTdDiv.className = "td-scrollable"
+                        replyTdDiv.innerText = question.reply
+                        var viewButtonTd = document.createElement("td")
+                        var viewButton = document.createElement("button")
+                        viewButton.innerText = "檢視"
+                        viewButtonTd.appendChild(viewButton)
+                        viewButton.onclick = function () {
+                            viewLiveQuestionModal.style.display = "block";
+                            let viewLiveQuestionModalClassification = document.getElementById("viewLiveQuestionModalClassification");
+                            viewLiveQuestionModalClassification.innerText = question.classification
+                            let viewLiveQuestionModalTitle = document.getElementById("viewLiveQuestionModalTitle");
+                            viewLiveQuestionModalTitle.innerText = question.title
+                            let viewLiveQuestionModalContent = document.getElementById("viewLiveQuestionModalContent");
+                            viewLiveQuestionModalContent.innerText = question.content
+                            let viewLiveQuestionModalReply = document.getElementById("viewLiveQuestionModalReply");
+                            viewLiveQuestionModalReply.innerText = question.reply
+
+                            // TODO: replace content
+                        }
+                        var deleteButtonTd = document.createElement("td")
+                        var deleteButton = document.createElement("button")
+                        deleteButton.innerText = "刪除"
+                        deleteButton.onclick = function () {
+                            console.log(question.id);
+                            deleteLiveQuestions(question.id)
+
+                        }
+                        deleteButtonTd.appendChild(deleteButton)
+                        var editButtonTd = document.createElement("td")
+                        var editButton = document.createElement("button")
+                        editButton.innerText = "編輯"
+                        editButton.onclick = function () {
+                            eidtLiveQuestionModal.style.display = "block";
+                            let editLiveQuestionModalClassification = document.getElementById("edit_classify");
+                            editLiveQuestionModalClassification.value = question.classification
+                            let editLiveQuestionModalTitle = document.getElementById("edit_q_title");
+                            editLiveQuestionModalTitle.innerText = question.title
+                            let editLiveQuestionModalContent = document.getElementById("edit_q_content");
+                            editLiveQuestionModalContent.innerText = question.content
+                            let editLiveQuestionModalReply = document.getElementById("edit_q_reply");
+                            editLiveQuestionModalReply.innerText = question.reply
+                            currentLiveQuestionId = question.id
+                            // TODO: replace content
+                        }
+                        editButtonTd.appendChild(editButton)
+                        tr.appendChild(classificationTd);
+                        questionTd.appendChild(questionDiv);
+                        tr.appendChild(questionTd);
+                        contentTd.appendChild(contentTdDiv);
+                        tr.appendChild(contentTd);
+                        tr.appendChild(replyTd);
+                        replyTd.appendChild(replyTdDiv)
+                        tr.appendChild(viewButtonTd);
+                        tr.appendChild(deleteButtonTd);
+                        tr.appendChild(editButtonTd);
+                        tbody.appendChild(tr)
+                    }
+
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                });
+        }
+        var currentLiveQuestionId = -1;
+        setUpModal();
+        setUpCreateNewQuestionButton();
+        setUpUpdateQuestionButton();
+        getLiveQuestions();
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        let sidebarList = document.querySelectorAll(".sidebarList");
+        let secondList = document.querySelectorAll(".secondList");
+        let iList = document.querySelectorAll(".iList");
+        let spanList = document.querySelectorAll(".spanList");
+
+        for (let i = 0; i < arrow.length; i++) {
+            //   check[i].on("click", function () {
+            //   $(".secondList").toggleClass("close");
+            // });
+            arrow[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement.parentElement;
+                // secondList.classList.toggle("close");
+                // console.log(join);
+                join.classList.toggle("open");
+            })
+        }
+
+        for (let i = 0; i < sidebarList.length; i++) {
+            sidebarList[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement;
+                // console.log(one);
+                join.classList.toggle("open");
+            })
+        }
+
+        for (let i = 0; i < iList.length; i++) {
+            iList[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement.parentElement.parentElement;
+                // console.log(one);
+                join.classList.toggle("open");
+            })
+        }
+
+        for (let i = 0; i < spanList.length; i++) {
+            spanList[i].addEventListener("click", (e) => {
+                let join = e.target.parentElement.parentElement.parentElement;
+                // console.log(one);
+                join.classList.toggle("open");
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
